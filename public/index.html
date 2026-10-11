@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>E-Learning Platform</title>
+  <style>
+    body { font-family: Segoe UI, Arial, sans-serif; background: #eef1f6; margin: 0; color: #1d2433; }
+    header { background: #1d2433; color: white; padding: 20px 30px; display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; align-items: center; }
+    .right { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+    h1 { margin: 0; }
+    h2 { margin: 0 0 4px; }
+    h3 { margin: 22px 0 8px; }
+    header button { background: transparent; color: #cfd6e6; border: 1px solid #4a5570; padding: 8px 16px; border-radius: 6px; font-size: 15px; cursor: pointer; margin-left: 6px; }
+    header button.active { background: white; color: #1d2433; border-color: white; }
+    .who { color: #cfd6e6; margin-right: 6px; }
+    #toolbar { padding: 16px 30px 0; }
+    #toolbar:empty { padding: 0; }
+    #list { padding: 20px 30px 8px; display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+    .card { background: white; border: 1px solid #d9dfea; border-radius: 8px; padding: 16px; cursor: pointer; }
+    .card:hover { border-color: #3b4cca; }
+    .card.selected { border-color: #3b4cca; box-shadow: inset 4px 0 0 #3b4cca; }
+    .card h3 { margin: 0 0 6px; }
+    .meta { color: #5d6678; font-size: 14px; margin: 0 0 6px; }
+    #detail { margin: 16px 30px 40px; background: white; border: 1px solid #d9dfea; border-radius: 8px; padding: 20px 24px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #d9dfea; }
+    th { color: #5d6678; }
+    .hint { color: #5d6678; }
+    .error { color: #b3261e; }
+    .paid { color: #1f8a5b; font-weight: 600; }
+    .pending { color: #b26a00; font-weight: 600; }
+    label { display: block; margin: 12px 0 4px; font-weight: 600; }
+    input { width: 100%; max-width: 380px; padding: 9px 10px; border: 1px solid #b9c2d3; border-radius: 6px; font-size: 15px; box-sizing: border-box; }
+    button.primary { background: #3b4cca; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-size: 15px; cursor: pointer; margin-top: 14px; }
+    button.danger { background: #fff; color: #b3261e; border: 1px solid #b3261e; padding: 9px 18px; border-radius: 6px; font-size: 15px; cursor: pointer; }
+    a { color: #3b4cca; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>E-Learning Platform</h1>
+    <div class="right">
+      <nav>
+        <button id="tab-courses" class="active" onclick="loadCourses()">Courses</button>
+        <button id="tab-students" onclick="loadStudents()">Students</button>
+      </nav>
+      <div id="auth"></div>
+    </div>
+  </header>
+  <div id="toolbar"></div>
+  <div id="list">Loading...</div>
+  <div id="detail"><p class="hint">Click a card to see details.</p></div>
+
+  <script>
+    let token = localStorage.getItem('token');
+    let me = null;          // the logged-in student: { student, enrolled }
+    let courseList = [];
+
+    const $ = (id) => document.getElementById(id);
+
+    // Makes text safe before putting it into the page
+    function esc(v) {
+      return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+
+    // Talks to our server. Adds the login token if we have one.
+    async function api(path, method, body) {
+      const headers = { 'Content-Type': 'application/json' };
+      if (token) headers.Authorization = 'Bearer ' + token;
+      const response = await fetch(path, {
+        method: method || 'GET',
+        headers: headers,
+        body: body ? JSON.stringify(body) : undefined
+      });
+      const data = await response.json();
+      if (response.status === 401 && token) {
+        clearLogin();
+        throw new Error('Your session has expired. Please log in again.');
+      }
+      if (!response.ok) throw new Error(data.error || 'Something went wrong.');
+      return data;
+    }
+
+    function clearLogin() {
+      token = null;
+      me = null;
+      localStorage.removeItem('token');
+      renderAuth();
+    }
+
+    function setMsg(text) {
+      const el = $('msg');
+      if (el) el.textContent = text;
+    }
+
+    function setTab(name) {
+      $('tab-courses').classList.toggle('active', name === 'courses');
+      $('tab-students').classList.toggle('active', name === 'students');
+    }
+
+    function selectCard(cardId) {
+      document.querySelectorAll('.card').forEach(function (card) { card.classList.remove('selected'); });
+      const el = $(cardId);
+      if (el) el.classList.add('selected');
+    }
+
+    // ---------- LOGIN / SIGNUP ----------
+    function renderAuth() {
+      $('auth').innerHTML = me
+        ? `<span class="who">Hi, ${esc(me.student.name)}</span><button onclick="logout()">Log out</button>`
+        : `<button onclick="showLogin('login')">Log in</button><button onclick="showLogin('signup')">Sign up</button>`;
+    }
+
+    function showLogin(mode, note) {
+      const signup = mode === 'signup';
+      $('detail').innerHTML = `
+        <h2>${signup ? 'Create an account' : 'Log in'}</h2>
+        ${note ? '<p class="hint">' + esc(note) + '</p>' : ''}
+        ${signup ? '<label>Name</label><input id="f-name">' : ''}
+        <label>Email</label><input id="f-email" type="email">
+        <label>Password</label><input id="f-password" type="password">
+        <p id="msg" class="error"></p>
+        <button class="primary" onclick="${signup ? 'doSignup()' : 'doLogin()'}">${signup ? 'Sign up' : 'Log in'}</button>
+        <p class="hint">${signup
+          ? 'Already have an account? <a href="#" onclick="showLogin(\'login\'); return false;">Log in</a>'
+          : 'New here? <a href="#" onclick="showLogin(\'signup\'); return false;">Create an account</a>'}</p>`;
+    }
+
+    async function doSignup() {
+      try {
+        await api('/api/signup', 'POST', {
+          name: $('f-name').value.trim(),
+          email: $('f-email').value.trim(),
+          password: $('f-password').value
+        });
+        await doLogin();
+      } catch (err) { setMsg(err.message); }
+    }
+
+    async function doLogin() {
+      try {
+        const result = await api('/api/login', 'POST', {
+          email: $('f-email').value.trim(),
+          password: $('f-password').value
+        });
+        token = result.token;
+        localStorage.setItem('token', token);
+        me = await api('/api/me');
+        renderAuth();
+        loadCourses();
+      } catch (err) {
+        token = null;
+        me = null;
+        localStorage.removeItem('token');
+        setMsg(err.message);
+      }
+    }
+
+    function logout() {
+      clearLogin();
+      loadCourses();
+    }
+
+    // ---------- COURSES ----------
+    async function loadCourses() {
+      setTab('courses');
+      $('toolbar').innerHTML = me ? '<button class="primary" onclick="showAddCourse()">+ Add course</button>' : '';
+      $('detail').innerHTML = '<p class="hint">Click a course to see its lectures and tests.</p>';
+      try {
+        courseList = await api('/api/courses');
+        $('list').innerHTML = courseList.map(function (c) {
+          return `
+            <div class="card" id="course-${c.course_id}" onclick="showCourse(${c.course_id})">
+              <h3>${esc(c.course_name)}</h3>
+              <p class="meta">${esc(c.category)} · ${esc(c.duration)} weeks · ₹${esc(c.fee)}</p>
+              <p>${esc(c.description)}</p>
+            </div>`;
+        }).join('');
+      } catch (err) {
+        $('list').innerHTML = '<p class="error">Could not load courses: ' + esc(err.message) + '</p>';
+      }
+    }
+
+    async function showCourse(id) {
+      selectCard('course-' + id);
+      $('detail').innerHTML = '<p class="hint">Loading...</p>';
+      try {
+        const data = await api('/api/courses/' + id);
+        const course = courseList.find(function (c) { return c.course_id === id; });
+        const enrolled = me && me.enrolled.includes(id);
+
+        let action;
+        if (!me) {
+          action = '<p class="hint">Log in to enroll in this course.</p>';
+        } else if (enrolled) {
+          action = `<span class="paid">You are enrolled</span> &nbsp; <button class="danger" onclick="unenroll(${id})">Unenroll</button>`;
+        } else {
+          action = `<button class="primary" onclick="enroll(${id})">Enroll</button>`;
+        }
+
+        const lectureRows = data.lectures.map(function (l) {
+          return `<tr><td>${esc(l.lecture_title)}</td><td>${esc(l.lecture_type)}</td><td>${esc(l.lecture_date)}</td><td>${esc(l.faculty ? l.faculty.name : '')}</td></tr>`;
+        }).join('');
+        const testRows = data.tests.map(function (t) {
+          return `<tr><td>${esc(t.test_name)}</td><td>${esc(t.test_date)}</td><td>${esc(t.duration)} min</td><td>${esc(t.total_marks)}</td></tr>`;
+        }).join('');
+
+        $('detail').innerHTML = `
+          <h2>${esc(course.course_name)}</h2>
+          <p class="meta">${esc(course.category)} · ${esc(course.duration)} weeks · ₹${esc(course.fee)}</p>
+          <p>${esc(course.description)}</p>
+          <div>${action}</div>
+          <p id="msg" class="error"></p>
+          <h3>Lectures</h3>
+          <table>
+            <tr><th>Title</th><th>Type</th><th>Date</th><th>Faculty</th></tr>
+            ${lectureRows || '<tr><td colspan="4" class="hint">No lectures yet.</td></tr>'}
+          </table>
+          <h3>Tests</h3>
+          <table>
+            <tr><th>Test</th><th>Date</th><th>Duration</th><th>Total marks</th></tr>
+            ${testRows || '<tr><td colspan="4" class="hint">No tests yet.</td></tr>'}
+          </table>`;
+      } catch (err) {
+        $('detail').innerHTML = '<p class="error">' + esc(err.message) + '</p>';
+      }
+    }
+
+    async function enroll(id) {
+      try {
+        await api('/api/enroll', 'POST', { course_id: id });
+        me = await api('/api/me');
+        await showCourse(id);
+      } catch (err) { setMsg(err.message); }
+    }
+
+    async function unenroll(id) {
+      try {
+        await api('/api/enroll/' + id, 'DELETE');
+        me = await api('/api/me');
+        await showCourse(id);
+      } catch (err) { setMsg(err.message); }
+    }
+
+    function showAddCourse() {
+      $('detail').innerHTML = `
+        <h2>Add a new course</h2>
+        <label>Course name</label><input id="c-name">
+        <label>Category</label><input id="c-category">
+        <label>Description</label><input id="c-description">
+        <label>Duration (weeks)</label><input id="c-duration" type="number" min="0">
+        <label>Fee (₹)</label><input id="c-fee" type="number" min="0">
+        <p id="msg" class="error"></p>
+        <button class="primary" onclick="addCourse()">Save course</button>`;
+    }
+
+    async function addCourse() {
+      try {
+        const course = await api('/api/courses', 'POST', {
+          course_name: $('c-name').value.trim(),
+          category: $('c-category').value.trim(),
+          description: $('c-description').value.trim(),
+          duration: $('c-duration').value,
+          fee: $('c-fee').value
+        });
+        await loadCourses();
+        await showCourse(course.course_id);
+      } catch (err) { setMsg(err.message); }
+    }
+
+    // ---------- STUDENTS (login needed) ----------
+    async function loadStudents() {
+      setTab('students');
+      $('toolbar').innerHTML = '';
+      if (!me) {
+        $('list').innerHTML = '';
+        showLogin('login', 'Please log in to see student information.');
+        return;
+      }
+      $('detail').innerHTML = '<p class="hint">Click a student to see their courses, scores and payments.</p>';
+      try {
+        const students = await api('/api/students');
+        $('list').innerHTML = students.map(function (s) {
+          return `
+            <div class="card" id="student-${s.student_id}" onclick="showStudent(${s.student_id})">
+              <h3>${esc(s.name)}${me.student.student_id === s.student_id ? ' (you)' : ''}</h3>
+              <p class="meta">${esc(s.email)}</p>
+              <p>${esc(s.address)}</p>
+            </div>`;
+        }).join('');
+      } catch (err) {
+        $('list').innerHTML = '<p class="error">' + esc(err.message) + '</p>';
+      }
+    }
+
+    async function showStudent(id) {
+      selectCard('student-' + id);
+      $('detail').innerHTML = '<p class="hint">Loading...</p>';
+      try {
+        const data = await api('/api/students/' + id);
+        const s = data.student;
+        const info = [s.email, s.phone, s.address, s.dob ? 'Born ' + s.dob : ''].filter(Boolean).map(esc).join(' · ');
+
+        const courseRows = data.courses.map(function (c) {
+          return `<tr><td>${esc(c.course.course_name)}</td><td>${esc(c.course.category)}</td></tr>`;
+        }).join('');
+        const scoreRows = data.attempts.map(function (a) {
+          return `<tr><td>${esc(a.test.test_name)}</td><td>${esc(a.score)} / ${esc(a.test.total_marks)}</td></tr>`;
+        }).join('');
+        const paymentRows = data.payments.map(function (p) {
+          const cls = p.payment_status === 'Paid' ? 'paid' : 'pending';
+          return `<tr><td>${esc(p.course.course_name)}</td><td>₹${esc(p.amount)}</td><td>${esc(p.payment_method)}</td><td>${esc(p.payment_date)}</td><td class="${cls}">${esc(p.payment_status)}</td></tr>`;
+        }).join('');
+
+        $('detail').innerHTML = `
+          <h2>${esc(s.name)}</h2>
+          <p class="meta">${info}</p>
+          <h3>Enrolled courses</h3>
+          <table>
+            <tr><th>Course</th><th>Category</th></tr>
+            ${courseRows || '<tr><td colspan="2" class="hint">Not enrolled yet.</td></tr>'}
+          </table>
+          <h3>Test scores</h3>
+          <table>
+            <tr><th>Test</th><th>Score</th></tr>
+            ${scoreRows || '<tr><td colspan="2" class="hint">No tests attempted yet.</td></tr>'}
+          </table>
+          <h3>Payments</h3>
+          <table>
+            <tr><th>Course</th><th>Amount</th><th>Method</th><th>Date</th><th>Status</th></tr>
+            ${paymentRows || '<tr><td colspan="5" class="hint">No payments yet.</td></tr>'}
+          </table>`;
+      } catch (err) {
+        $('detail').innerHTML = '<p class="error">' + esc(err.message) + '</p>';
+      }
+    }
+
+    // ---------- START ----------
+    async function start() {
+      if (token) {
+        try { me = await api('/api/me'); } catch (err) { clearLogin(); }
+      }
+      renderAuth();
+      loadCourses();
+    }
+    start();
+  </script>
+</body>
+</html>
