@@ -30,11 +30,55 @@
     .error { color: #b3261e; }
     .paid { color: #1f8a5b; font-weight: 600; }
     .pending { color: #b26a00; font-weight: 600; }
+    .q { margin: 18px 0; padding-bottom: 10px; border-bottom: 1px solid #eef1f6; }
+    .opt { display: block; font-weight: 400; margin: 6px 0; cursor: pointer; }
     label { display: block; margin: 12px 0 4px; font-weight: 600; }
-    input { width: 100%; max-width: 380px; padding: 9px 10px; border: 1px solid #b9c2d3; border-radius: 6px; font-size: 15px; box-sizing: border-box; }
-    button.primary { background: #3b4cca; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-size: 15px; cursor: pointer; margin-top: 14px; }
-    button.danger { background: #fff; color: #b3261e; border: 1px solid #b3261e; padding: 9px 18px; border-radius: 6px; font-size: 15px; cursor: pointer; }
+    input, select { width: 100%; max-width: 380px; padding: 9px 10px; border: 1px solid #b9c2d3; border-radius: 6px; font-size: 15px; box-sizing: border-box; background: white; }
+    input[type=checkbox], input[type=radio] { width: auto; margin-right: 8px; }
+    button.primary { background: #3b4cca; color: white; border: 1px solid #3b4cca; padding: 10px 20px; border-radius: 6px; font-size: 15px; cursor: pointer; margin-top: 14px; }
+    button.plain { background: white; color: #3b4cca; border: 1px solid #3b4cca; padding: 10px 20px; border-radius: 6px; font-size: 15px; cursor: pointer; margin-top: 14px; }
+    button.danger { background: white; color: #b3261e; border: 1px solid #b3261e; padding: 10px 20px; border-radius: 6px; font-size: 15px; cursor: pointer; }
+    button.small { margin: 0; padding: 6px 14px; font-size: 14px; }
+    button:disabled { opacity: .6; cursor: wait; }
+    .seg button { margin: 8px 8px 0 0; }
     a { color: #3b4cca; }
+    textarea { width: 100%; max-width: 640px; min-height: 140px; padding: 9px 10px; border: 1px solid #b9c2d3; border-radius: 6px; font-size: 15px; font-family: inherit; box-sizing: border-box; background: white; }
+    .answer { background: #f6f8fc; border: 1px solid #d9dfea; border-radius: 6px; padding: 10px 12px; white-space: pre-wrap; word-break: break-word; max-width: 640px; margin: 6px 0; }
+    .steps { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+    .step { padding: 6px 10px; border-radius: 14px; background: #eef1f6; color: #5d6678; font-size: 13px; border: 1px solid #d9dfea; }
+    .step.done { background: #e4f5ec; color: #1f8a5b; border-color: #b7e2cd; font-weight: 600; }
+    .about-hero { background: linear-gradient(135deg, #1d2433, #3b4cca); color: white; border-radius: 10px; padding: 28px 26px; margin-bottom: 6px; }
+    .about-hero h2 { font-size: 28px; margin-bottom: 8px; }
+    .about-hero p { max-width: 640px; line-height: 1.5; color: #e4e8f5; }
+    .about-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+    .about-card { border: 1px solid #d9dfea; border-radius: 8px; padding: 16px; background: #f9fafd; }
+    .about-card h3 { margin: 8px 0 6px; font-size: 17px; }
+    .about-card p { margin: 0; color: #4a5468; line-height: 1.45; }
+    .about-icon { font-size: 28px; }
+    .about-step { display: flex; gap: 14px; align-items: flex-start; margin: 12px 0; }
+    .about-step p { margin: 2px 0 0; color: #4a5468; }
+    .about-num { background: #3b4cca; color: white; width: 30px; height: 30px; flex: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+    .about-faq { border: 1px solid #d9dfea; border-radius: 8px; padding: 10px 14px; margin: 8px 0; max-width: 760px; }
+    .about-faq summary { cursor: pointer; font-weight: 600; }
+    .about-faq p { margin: 8px 0 2px; color: #4a5468; line-height: 1.45; }
+    .certificate { border: 8px double #3b4cca; border-radius: 6px; padding: 40px 24px; text-align: center; max-width: 760px; margin: 0 auto 16px; background: #fdfdff; }
+    .certificate h1 { font-size: 34px; margin: 6px 0 18px; color: #1d2433; }
+    .certificate h2 { margin: 8px 0 14px; }
+    .cert-name { font-size: 30px; color: #3b4cca; }
+    .cert-small { color: #5d6678; font-size: 14px; }
+    @media print { header, #toolbar, #list, .no-print { display: none !important; } body { background: white; } #detail { margin: 0; border: 0; } }
+    .grade-box { background: #f0faf5; border: 1px solid #b7e2cd; border-radius: 6px; padding: 12px 16px; max-width: 640px; margin: 12px 0; }
+
+    /* Notification bell */
+    #bell-wrap { position: relative; }
+    #bell { position: relative; font-size: 18px; padding: 6px 12px; margin-left: 0; }
+    #bell-count { position: absolute; top: -7px; right: -7px; background: #d93025; color: white; font-size: 11px; font-weight: 700; min-width: 18px; height: 18px; line-height: 18px; border-radius: 9px; text-align: center; padding: 0 4px; box-sizing: border-box; }
+    #notif-panel { position: absolute; right: 0; top: 46px; width: 360px; max-width: 88vw; max-height: 440px; overflow-y: auto; background: white; color: #1d2433; border: 1px solid #d9dfea; border-radius: 8px; box-shadow: 0 8px 28px rgba(0, 0, 0, .22); z-index: 50; }
+    .notif-head { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-bottom: 1px solid #d9dfea; position: sticky; top: 0; background: white; }
+    .notif-item { padding: 10px 14px; border-bottom: 1px solid #eef1f6; cursor: pointer; font-size: 14px; border-left: 4px solid transparent; }
+    .notif-item:hover { background: #f6f8fc; }
+    .notif-item.unread { background: #eef2ff; border-left-color: #3b4cca; }
+    .notif-item .meta { margin: 4px 0 0; font-size: 12px; }
   </style>
 </head>
 <body>
@@ -43,8 +87,20 @@
     <div class="right">
       <nav>
         <button id="tab-courses" class="active" onclick="loadCourses()">Courses</button>
-        <button id="tab-students" onclick="loadStudents()">Students</button>
+        <button id="tab-about" class="bk-tab" onclick="showAbout()">About</button>
+        <button id="tab-demo" onclick="loadDemo()" style="display:none">Free demo</button>
+        <button id="tab-students" onclick="onStudentsTab()" style="display:none">Students</button>
+        <button id="tab-books" class="bk-tab" onclick="loadBooks()" style="display:none">Bookstore</button>
+        <button id="tab-cart" class="bk-tab" onclick="loadCart()" style="display:none">Cart</button>
+        <button id="tab-orders" class="bk-tab" onclick="loadOrders()" style="display:none">My orders</button>
+        <button id="tab-staff" class="bk-tab" onclick="loadStaffOrders()" style="display:none">Book orders</button>
+        <button id="tab-progress" class="bk-tab" onclick="loadProgress()" style="display:none">My progress</button>
+        <button id="tab-tracking" class="bk-tab" onclick="loadTracking()" style="display:none">Tracking</button>
       </nav>
+      <div id="bell-wrap" style="display:none">
+        <button id="bell" onclick="toggleNotifications()" aria-label="Notifications" title="Notifications">🔔<span id="bell-count" style="display:none">0</span></button>
+        <div id="notif-panel" style="display:none"></div>
+      </div>
       <div id="auth"></div>
     </div>
   </header>
@@ -54,8 +110,15 @@
 
   <script>
     let token = localStorage.getItem('token');
-    let me = null;          // the logged-in student: { student, enrolled }
+    let me = null;            // { role, profile, access, attempts, demoUsed }
     let courseList = [];
+    let authRole = 'student'; // which login/signup form is showing
+    let currentCourseId = null;
+    let currentTestId = null;
+    let timerHandle = null;
+    let notifTimer = null;     // refreshes the bell every minute
+    let notifState = { notifications: [], unread: 0 };
+    let recoveryToken = null;  // set when the user arrives from a "reset password" email
 
     const $ = (id) => document.getElementById(id);
 
@@ -64,6 +127,51 @@
       return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) {
         return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
       });
+    }
+
+    function fmtDate(iso) {
+      return new Date(iso).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+    }
+
+    function daysLeft(iso) {
+      return Math.max(0, Math.ceil((new Date(iso).getTime() - Date.now()) / 86400000));
+    }
+
+    function fmtDateTime(iso) {
+      return new Date(iso).toLocaleString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit' });
+    }
+
+    // "Due in 3 days", "Due in 5 hours", or "Deadline passed"
+    function timeLeftText(iso) {
+      const ms = new Date(iso).getTime() - Date.now();
+      if (ms <= 0) return 'Deadline passed';
+      const mins = Math.floor(ms / 60000);
+      if (mins < 60) return 'Due in ' + Math.max(1, mins) + ' min';
+      const hours = Math.floor(mins / 60);
+      if (hours < 48) return 'Due in ' + hours + (hours === 1 ? ' hour' : ' hours');
+      return 'Due in ' + Math.floor(hours / 24) + ' days';
+    }
+
+    function timeAgo(iso) {
+      const s = Math.floor((Date.now() - new Date(iso).getTime()) / 1000);
+      if (s < 60) return 'just now';
+      if (s < 3600) return Math.floor(s / 60) + ' min ago';
+      if (s < 86400) return Math.floor(s / 3600) + ' hours ago';
+      return fmtDate(iso);
+    }
+
+    function fmtTime(seconds) {
+      return Math.floor(seconds / 60) + ':' + String(seconds % 60).padStart(2, '0');
+    }
+
+    function clearTimer() {
+      if (timerHandle) { clearInterval(timerHandle); timerHandle = null; }
+    }
+
+    // This student's access (paid or demo) to a course, if any
+    function accessFor(courseId) {
+      if (!me || me.role !== 'student') return null;
+      return me.access.find(function (a) { return a.course_id === courseId; }) || null;
     }
 
     // Talks to our server. Adds the login token if we have one.
@@ -85,19 +193,27 @@
     }
 
     function clearLogin() {
+      clearTimer();
       token = null;
       me = null;
       localStorage.removeItem('token');
       renderAuth();
     }
 
-    function setMsg(text) {
+    // Shows a message in the red message line (or green when ok is true)
+    function setMsg(text, ok) {
       const el = $('msg');
-      if (el) el.textContent = text;
+      if (el) {
+        el.textContent = text;
+        el.className = ok ? 'paid' : 'error';
+      }
     }
 
     function setTab(name) {
+      clearTimer();
+      document.querySelectorAll('.bk-tab').forEach(function (b) { b.classList.remove('active'); });
       $('tab-courses').classList.toggle('active', name === 'courses');
+      $('tab-demo').classList.toggle('active', name === 'demo');
       $('tab-students').classList.toggle('active', name === 'students');
     }
 
@@ -107,35 +223,208 @@
       if (el) el.classList.add('selected');
     }
 
-    // ---------- LOGIN / SIGNUP ----------
+    // ---------- HEADER ----------
     function renderAuth() {
       $('auth').innerHTML = me
-        ? `<span class="who">Hi, ${esc(me.student.name)}</span><button onclick="logout()">Log out</button>`
-        : `<button onclick="showLogin('login')">Log in</button><button onclick="showLogin('signup')">Sign up</button>`;
+        ? `<span class="who">Hi, ${esc(me.profile.name)} (${esc(me.role)})</span><button onclick="logout()">Log out</button>`
+        : `<button onclick="showAuth('login')">Log in</button><button onclick="showAuth('signup')">Sign up</button>`;
+      const tab = $('tab-students');
+      tab.style.display = me ? '' : 'none';
+      tab.textContent = me && me.role === 'student' ? 'My dashboard' : 'Students';
+      $('tab-demo').style.display = me && me.role === 'student' ? '' : 'none';
+      syncBell();
+      syncBookTabs();
+      syncProgressTabs();
     }
 
-    function showLogin(mode, note) {
+    // ---------- NOTIFICATION BELL (students only) ----------
+    // Shows or hides the bell, and starts or stops the once-a-minute refresh
+    function syncBell() {
+      const isStudent = !!me && me.role === 'student';
+      $('bell-wrap').style.display = isStudent ? '' : 'none';
+      if (isStudent) {
+        if (!notifTimer) {
+          notifTimer = setInterval(refreshNotifications, 60000);
+          refreshNotifications();
+        }
+      } else {
+        if (notifTimer) { clearInterval(notifTimer); notifTimer = null; }
+        notifState = { notifications: [], unread: 0 };
+        $('notif-panel').style.display = 'none';
+      }
+    }
+
+    async function refreshNotifications() {
+      if (!me || me.role !== 'student') return;
+      try {
+        notifState = await api('/api/notifications');
+      } catch (err) { return; }
+      const badge = $('bell-count');
+      badge.textContent = notifState.unread > 99 ? '99+' : notifState.unread;
+      badge.style.display = notifState.unread ? '' : 'none';
+      if ($('notif-panel').style.display !== 'none') renderNotifPanel();
+    }
+
+    function toggleNotifications() {
+      const panel = $('notif-panel');
+      if (panel.style.display === 'none') {
+        renderNotifPanel();
+        panel.style.display = '';
+        refreshNotifications();
+      } else {
+        panel.style.display = 'none';
+      }
+    }
+
+    function renderNotifPanel() {
+      const items = notifState.notifications.map(function (n) {
+        const course = n.course_id == null ? 'null' : n.course_id;
+        const assignment = n.assignment_id == null ? 'null' : n.assignment_id;
+        return `
+          <div class="notif-item ${n.is_read ? '' : 'unread'}" onclick="openNotification(${n.notification_id}, ${course}, ${assignment})">
+            <div>${esc(n.message)}</div>
+            <p class="meta">${esc(timeAgo(n.created_at))}</p>
+          </div>`;
+      }).join('');
+      $('notif-panel').innerHTML = `
+        <div class="notif-head"><b>Notifications</b><a href="#" onclick="markAllRead(); return false;">Mark all as read</a></div>
+        ${items || '<p class="hint" style="padding:14px; margin:0">No notifications yet.</p>'}`;
+    }
+
+    async function markAllRead() {
+      try {
+        await api('/api/notifications/read', 'POST', {});
+        await refreshNotifications();
+      } catch (err) { /* ignore */ }
+    }
+
+    // Clicking a notification marks it as read and opens the assignment it is about
+    async function openNotification(notificationId, courseId, assignmentId) {
+      $('notif-panel').style.display = 'none';
+      try { await api('/api/notifications/read', 'POST', { id: notificationId }); } catch (err) { /* ignore */ }
+      refreshNotifications();
+      if (courseId == null) return;
+      await loadCourses();
+      if (assignmentId != null) {
+        selectCard('course-' + courseId);
+        await showAssignment(assignmentId);
+      } else {
+        await showCourse(courseId);
+      }
+    }
+
+    // Clicking anywhere else closes the notification panel
+    document.addEventListener('click', function (e) {
+      const wrap = $('bell-wrap');
+      if (wrap && !wrap.contains(e.target)) $('notif-panel').style.display = 'none';
+    });
+
+    function onStudentsTab() {
+      if (!me) return showAuth('login');
+      if (me.role === 'student') loadDashboard(); else loadStudents();
+    }
+
+    // ---------- LOGIN / SIGNUP ----------
+    function showAuth(mode, role) {
+      if (role) authRole = role;
       const signup = mode === 'signup';
+      const teacher = authRole === 'teacher';
+      setTab('none');
+      $('list').innerHTML = '';
+      $('toolbar').innerHTML = '';
       $('detail').innerHTML = `
         <h2>${signup ? 'Create an account' : 'Log in'}</h2>
-        ${note ? '<p class="hint">' + esc(note) + '</p>' : ''}
+        <div class="seg">
+          <button class="${teacher ? 'plain' : 'primary'}" onclick="showAuth('${mode}', 'student')">Student</button>
+          <button class="${teacher ? 'primary' : 'plain'}" onclick="showAuth('${mode}', 'teacher')">Teacher</button>
+        </div>
         ${signup ? '<label>Name</label><input id="f-name">' : ''}
         <label>Email</label><input id="f-email" type="email">
         <label>Password</label><input id="f-password" type="password">
+        ${signup && teacher ? '<label>Teacher code</label><input id="f-code" type="password"><label>Qualification (optional)</label><input id="f-qual"><label>Specialization (optional)</label><input id="f-spec">' : ''}
         <p id="msg" class="error"></p>
-        <button class="primary" onclick="${signup ? 'doSignup()' : 'doLogin()'}">${signup ? 'Sign up' : 'Log in'}</button>
+        <button class="primary" onclick="${signup ? 'doSignup()' : 'doLogin()'}">${signup ? 'Sign up as ' : 'Log in as '}${teacher ? 'teacher' : 'student'}</button>
         <p class="hint">${signup
-          ? 'Already have an account? <a href="#" onclick="showLogin(\'login\'); return false;">Log in</a>'
-          : 'New here? <a href="#" onclick="showLogin(\'signup\'); return false;">Create an account</a>'}</p>`;
+          ? 'Already have an account? <a href="#" onclick="showAuth(\'login\'); return false;">Log in</a>'
+          : 'New here? <a href="#" onclick="showAuth(\'signup\'); return false;">Create an account</a>'}</p>
+        ${signup ? '' : '<p class="hint"><a href="#" onclick="showForgot(); return false;">Forgot your password?</a></p>'}`;
+    }
+
+    // ---------- FORGOT / RESET PASSWORD ----------
+    function showForgot() {
+      setTab('none');
+      $('list').innerHTML = '';
+      $('toolbar').innerHTML = '';
+      $('detail').innerHTML = `
+        <h2>Forgot your password?</h2>
+        <p class="hint">Enter the email you signed up with. We will email you a link to choose a new password.</p>
+        <label>Email</label><input id="f-email" type="email">
+        <p id="msg" class="error"></p>
+        <button class="primary" id="reset-btn" onclick="sendReset()">Send reset link</button>
+        <button class="plain" onclick="showAuth('login')">Back to log in</button>`;
+    }
+
+    async function sendReset() {
+      const btn = $('reset-btn');
+      btn.disabled = true;
+      setMsg('');
+      try {
+        const result = await api('/api/forgot-password', 'POST', { email: $('f-email').value.trim() });
+        setMsg(result.message, true);
+      } catch (err) { setMsg(err.message); }
+      btn.disabled = false;
+    }
+
+    // Shown when the user opens the link from the reset email
+    function showReset(problem) {
+      setTab('none');
+      $('list').innerHTML = '';
+      $('toolbar').innerHTML = '';
+      if (problem) {
+        $('detail').innerHTML = `
+          <h2>Reset link problem</h2>
+          <p class="error">${esc(problem)}</p>
+          <button class="primary" onclick="showForgot()">Request a new link</button>`;
+        return;
+      }
+      $('detail').innerHTML = `
+        <h2>Choose a new password</h2>
+        <label>New password</label><input id="r-password" type="password">
+        <label>Confirm new password</label><input id="r-confirm" type="password">
+        <p id="msg" class="error"></p>
+        <button class="primary" id="reset-btn" onclick="doReset()">Change password</button>`;
+    }
+
+    async function doReset() {
+      const password = $('r-password').value;
+      if (password !== $('r-confirm').value) return setMsg('The two passwords do not match.');
+      const btn = $('reset-btn');
+      btn.disabled = true;
+      try {
+        const result = await api('/api/reset-password', 'POST', { token: recoveryToken, password: password });
+        recoveryToken = null;
+        showAuth('login');
+        setMsg(result.message, true);
+      } catch (err) {
+        btn.disabled = false;
+        setMsg(err.message);
+      }
     }
 
     async function doSignup() {
       try {
-        await api('/api/signup', 'POST', {
+        const body = {
+          role: authRole,
           name: $('f-name').value.trim(),
           email: $('f-email').value.trim(),
           password: $('f-password').value
-        });
+        };
+        if (authRole === 'teacher') {
+          body.teacherCode = $('f-code').value;
+          body.qualification = $('f-qual').value.trim();
+          body.specialization = $('f-spec').value.trim();
+        }
+        await api('/api/signup', 'POST', body);
         await doLogin();
       } catch (err) { setMsg(err.message); }
     }
@@ -144,7 +433,8 @@
       try {
         const result = await api('/api/login', 'POST', {
           email: $('f-email').value.trim(),
-          password: $('f-password').value
+          password: $('f-password').value,
+          role: authRole
         });
         token = result.token;
         localStorage.setItem('token', token);
@@ -167,8 +457,9 @@
     // ---------- COURSES ----------
     async function loadCourses() {
       setTab('courses');
-      $('toolbar').innerHTML = me ? '<button class="primary" onclick="showAddCourse()">+ Add course</button>' : '';
-      $('detail').innerHTML = '<p class="hint">Click a course to see its lectures and tests.</p>';
+      $('toolbar').innerHTML = me && me.role === 'teacher'
+        ? '<button class="primary" onclick="showAddCourse()">+ Add course</button>' : '';
+      $('detail').innerHTML = '<p class="hint">Click a course to see its lectures, assignments and tests.</p>';
       try {
         courseList = await api('/api/courses');
         $('list').innerHTML = courseList.map(function (c) {
@@ -185,28 +476,112 @@
     }
 
     async function showCourse(id) {
+      clearTimer();
+      currentCourseId = id;
       selectCard('course-' + id);
       $('detail').innerHTML = '<p class="hint">Loading...</p>';
       try {
         const data = await api('/api/courses/' + id);
         const course = courseList.find(function (c) { return c.course_id === id; });
-        const enrolled = me && me.enrolled.includes(id);
+        const a = accessFor(id);
+
+        // Assignments are only listed for logged-in users
+        let assignments = [];
+        lectureDone = [];
+        if (me && me.role === 'student') {
+          try { lectureDone = await api('/api/courses/' + id + '/lecture-status'); } catch (err) { /* buttons show as pending */ }
+        }
+        if (me) {
+          try { assignments = await api('/api/courses/' + id + '/assignments'); } catch (err) { /* show an empty list */ }
+        }
 
         let action;
         if (!me) {
-          action = '<p class="hint">Log in to enroll in this course.</p>';
-        } else if (enrolled) {
-          action = `<span class="paid">You are enrolled</span> &nbsp; <button class="danger" onclick="unenroll(${id})">Unenroll</button>`;
+          action = '<p class="hint">Log in as a student to start a free demo or enroll.</p>';
+        } else if (me.role === 'teacher') {
+          action = '<p class="hint">You are logged in as a teacher.</p>';
+        } else if (a && a.access_type === 'paid') {
+          action = '<span class="paid">You are enrolled</span>';
+        } else if (a && a.active) {
+          action = `<span class="pending">Free demo active · ${daysLeft(a.expires_at)} days left (until ${esc(fmtDate(a.expires_at))})</span>
+                    <br><button class="primary" onclick="showPayment(${id})">Pay &amp; enroll fully</button>`;
         } else {
-          action = `<button class="primary" onclick="enroll(${id})">Enroll</button>`;
+          const ended = a ? `<p class="error">Your demo ended on ${esc(fmtDate(a.expires_at))}.</p>` : '';
+          const demoBtn = (!a && !me.demoUsed)
+            ? `<button class="plain" onclick="startDemo(${id})">Start free 30-day demo</button> ` : '';
+          const note = (!a && me.demoUsed) ? '<p class="hint">You have already used your free demo.</p>' : '';
+          action = ended + demoBtn + `<button class="primary" onclick="showPayment(${id})">Pay ₹${esc(course.fee)} &amp; enroll</button>` + note;
+        }
+
+        // The button (or status) shown at the end of each test row
+        function testAction(t) {
+          if (!me) return '';
+          if (me.role === 'teacher') {
+            return `<button class="plain small" onclick="showManage(${t.test_id})">Questions</button>`;
+          }
+          const done = me.attempts.find(function (x) { return x.test_id === t.test_id && x.score != null; });
+          if (done) return `<span class="paid">Score ${esc(done.score)} / ${esc(t.total_marks)}</span>`;
+          if (!(a && a.active)) return '<span class="hint">Start a demo or enroll</span>';
+          const started = me.attempts.find(function (x) { return x.test_id === t.test_id && x.score == null; });
+          return `<button class="primary small" onclick="startTest(${t.test_id}, ${t.duration}, ${started ? 'true' : 'false'})">${started ? 'Resume test' : 'Take test'}</button>`;
         }
 
         const lectureRows = data.lectures.map(function (l) {
-          return `<tr><td>${esc(l.lecture_title)}</td><td>${esc(l.lecture_type)}</td><td>${esc(l.lecture_date)}</td><td>${esc(l.faculty ? l.faculty.name : '')}</td></tr>`;
+          return `<tr><td>${esc(l.lecture_title)}</td><td>${esc(l.lecture_type)}</td><td>${esc(l.lecture_date)}</td><td>${esc(l.faculty ? l.faculty.name : '')}</td><td>${lectureAction(l)}</td></tr>`;
         }).join('');
         const testRows = data.tests.map(function (t) {
-          return `<tr><td>${esc(t.test_name)}</td><td>${esc(t.test_date)}</td><td>${esc(t.duration)} min</td><td>${esc(t.total_marks)}</td></tr>`;
+          return `<tr><td>${esc(t.test_name)}</td><td>${esc(t.test_date)}</td><td>${esc(t.duration)} min</td><td>${esc(t.total_marks)}</td><td>${testAction(t)}</td></tr>`;
         }).join('');
+
+        // Assignments table: teachers see counts, students see their own status
+        let assignmentSection;
+        if (!me) {
+          assignmentSection = '<p class="hint">Log in to see this course\'s assignments and deadlines.</p>';
+        } else if (me.role === 'teacher') {
+          const rows = assignments.map(function (x) {
+            return `<tr>
+              <td>${esc(x.title)}</td>
+              <td>${esc(fmtDateTime(x.due_date))}</td>
+              <td>${esc(x.max_marks)}</td>
+              <td>${esc(x.given_to)}</td>
+              <td>${esc(x.submitted)} submitted · ${esc(x.graded)} graded</td>
+              <td><button class="plain small" onclick="showSubmissions(${x.assignment_id})">Submissions</button></td>
+            </tr>`;
+          }).join('');
+          assignmentSection = `
+            <table>
+              <tr><th>Assignment</th><th>Deadline</th><th>Marks</th><th>Given to</th><th>Progress</th><th></th></tr>
+              ${rows || '<tr><td colspan="6" class="hint">No assignments yet.</td></tr>'}
+            </table>
+            <button class="primary" onclick="showAddAssignment(${id})">+ Add assignment</button>`;
+        } else {
+          const rows = assignments.map(function (x) {
+            const s = x.submission;
+            const late = s && new Date(s.submitted_at) > new Date(x.due_date);
+            let status;
+            if (s && s.graded_at) {
+              status = `<span class="paid">Graded: ${esc(s.marks)} / ${esc(x.max_marks)}</span>`;
+            } else if (s) {
+              status = `<span class="pending">Submitted${late ? ' (late)' : ''}</span>`;
+            } else if (new Date(x.due_date) < new Date()) {
+              status = '<span class="error">Overdue, not submitted</span>';
+            } else {
+              status = `<span class="pending">${esc(timeLeftText(x.due_date))}</span>`;
+            }
+            return `<tr>
+              <td>${esc(x.title)}</td>
+              <td>${esc(fmtDateTime(x.due_date))}</td>
+              <td>${esc(x.max_marks)}</td>
+              <td>${status}</td>
+              <td><button class="${s ? 'plain' : 'primary'} small" onclick="showAssignment(${x.assignment_id})">${s ? 'View' : 'Open'}</button></td>
+            </tr>`;
+          }).join('');
+          assignmentSection = `
+            <table>
+              <tr><th>Assignment</th><th>Deadline</th><th>Marks</th><th>Status</th><th></th></tr>
+              ${rows || '<tr><td colspan="5" class="hint">No assignments yet.</td></tr>'}
+            </table>`;
+        }
 
         $('detail').innerHTML = `
           <h2>${esc(course.course_name)}</h2>
@@ -216,33 +591,20 @@
           <p id="msg" class="error"></p>
           <h3>Lectures</h3>
           <table>
-            <tr><th>Title</th><th>Type</th><th>Date</th><th>Faculty</th></tr>
-            ${lectureRows || '<tr><td colspan="4" class="hint">No lectures yet.</td></tr>'}
+            <tr><th>Title</th><th>Type</th><th>Date</th><th>Faculty</th><th></th></tr>
+            ${lectureRows || '<tr><td colspan="5" class="hint">No lectures yet.</td></tr>'}
           </table>
+          <h3>Assignments</h3>
+          ${assignmentSection}
           <h3>Tests</h3>
           <table>
-            <tr><th>Test</th><th>Date</th><th>Duration</th><th>Total marks</th></tr>
-            ${testRows || '<tr><td colspan="4" class="hint">No tests yet.</td></tr>'}
-          </table>`;
+            <tr><th>Test</th><th>Date</th><th>Duration</th><th>Total marks</th><th></th></tr>
+            ${testRows || '<tr><td colspan="5" class="hint">No tests yet.</td></tr>'}
+          </table>
+          ${me && me.role === 'teacher' ? `<button class="primary" onclick="showAddTest(${id})">+ Add test</button> <button class="primary" onclick="showAddLecture(${id})">+ Add lecture</button> <button class="plain" onclick="showAnnounce(${id})">+ Send announcement</button>` : ''}`;
       } catch (err) {
         $('detail').innerHTML = '<p class="error">' + esc(err.message) + '</p>';
       }
-    }
-
-    async function enroll(id) {
-      try {
-        await api('/api/enroll', 'POST', { course_id: id });
-        me = await api('/api/me');
-        await showCourse(id);
-      } catch (err) { setMsg(err.message); }
-    }
-
-    async function unenroll(id) {
-      try {
-        await api('/api/enroll/' + id, 'DELETE');
-        me = await api('/api/me');
-        await showCourse(id);
-      } catch (err) { setMsg(err.message); }
     }
 
     function showAddCourse() {
@@ -271,22 +633,491 @@
       } catch (err) { setMsg(err.message); }
     }
 
-    // ---------- STUDENTS (login needed) ----------
+    // ---------- ASSIGNMENTS: TEACHER ----------
+    async function showAddAssignment(courseId) {
+      $('detail').innerHTML = '<p class="hint">Loading...</p>';
+      let students = [];
+      try { students = await api('/api/courses/' + courseId + '/students'); } catch (err) { /* list stays empty */ }
+      const checks = students.map(function (s) {
+        return `<label class="opt"><input type="checkbox" class="as-student" value="${s.student_id}">${esc(s.name)} <span class="hint">(${esc(s.email)})</span></label>`;
+      }).join('');
+      $('detail').innerHTML = `
+        <h2>Add an assignment</h2>
+        <label>Title</label><input id="as-title">
+        <label>Instructions</label><textarea id="as-desc"></textarea>
+        <label>Deadline</label><input id="as-due" type="datetime-local">
+        <label>Maximum marks</label><input id="as-marks" type="number" min="1" value="10">
+        <label>Give this assignment to</label>
+        <label class="opt"><input type="radio" name="as-who" value="all" checked onchange="toggleStudentPick()">All students enrolled in this course</label>
+        <label class="opt"><input type="radio" name="as-who" value="some" onchange="toggleStudentPick()">Only the students I select</label>
+        <div id="as-pick" style="display:none; margin-left:24px">${checks || '<p class="hint">No students are enrolled in this course yet.</p>'}</div>
+        <p class="hint">Students who receive it get a notification straight away, and reminders as the deadline gets close.</p>
+        <p id="msg" class="error"></p>
+        <button class="primary" onclick="addAssignment(${courseId})">Create assignment</button>
+        <button class="plain" onclick="showCourse(${courseId})">Cancel</button>`;
+    }
+
+    function toggleStudentPick() {
+      const some = document.querySelector('input[name=as-who]:checked').value === 'some';
+      $('as-pick').style.display = some ? '' : 'none';
+    }
+
+    async function addAssignment(courseId) {
+      const who = document.querySelector('input[name=as-who]:checked').value;
+      const ids = who === 'some'
+        ? Array.from(document.querySelectorAll('.as-student:checked')).map(function (x) { return Number(x.value); })
+        : [];
+      if (who === 'some' && !ids.length) return setMsg('Please select at least one student.');
+      const due = $('as-due').value;
+      try {
+        const result = await api('/api/assignments', 'POST', {
+          course_id: courseId,
+          title: $('as-title').value.trim(),
+          description: $('as-desc').value.trim(),
+          due_date: due ? new Date(due).toISOString() : '',
+          max_marks: $('as-marks').value,
+          student_ids: ids
+        });
+        await showCourse(courseId);
+        setMsg('Assignment created. ' + result.notified + (result.notified === 1 ? ' student was' : ' students were') + ' notified.', true);
+      } catch (err) { setMsg(err.message); }
+    }
+
+    // Submissions of one assignment: read the answers, give marks and feedback
+    async function showSubmissions(assignmentId) {
+      $('detail').innerHTML = '<p class="hint">Loading...</p>';
+      try {
+        const data = await api('/api/assignments/' + assignmentId + '/submissions');
+        const a = data.assignment;
+        currentCourseId = a.course_id;
+
+        const cards = data.submissions.map(function (s) {
+          const late = new Date(s.submitted_at) > new Date(a.due_date);
+          const badge = s.graded_at ? '<span class="paid">Graded</span>' : '<span class="pending">Needs grading</span>';
+          return `
+            <div class="q">
+              <p><b>${esc(s.student.name)}</b>
+                <span class="hint">· submitted ${esc(fmtDateTime(s.submitted_at))}</span>
+                ${late ? '<span class="error">· late</span>' : ''} · ${badge}</p>
+              <div class="answer">${esc(s.answer_text)}</div>
+              <label>Marks (out of ${esc(a.max_marks)})</label>
+              <input id="m-${s.submission_id}" type="number" min="0" max="${esc(a.max_marks)}" value="${esc(s.marks == null ? '' : s.marks)}">
+              <label>Feedback (optional)</label>
+              <input id="g-${s.submission_id}" style="max-width:640px" value="${esc(s.feedback || '')}">
+              <br><button class="primary small" style="margin-top:12px" onclick="saveGrade(${s.submission_id})">Save grade &amp; notify student</button>
+              <span id="gm-${s.submission_id}" class="error" style="margin-left:10px"></span>
+            </div>`;
+        }).join('');
+
+        const missing = data.not_submitted.length
+          ? data.not_submitted.map(function (p) { return esc(p.name); }).join(', ')
+          : 'Nobody, everyone has submitted.';
+
+        $('detail').innerHTML = `
+          <h2>${esc(a.title)}</h2>
+          <p class="meta">${esc(data.course_name)} · due ${esc(fmtDateTime(a.due_date))} · ${esc(a.max_marks)} marks</p>
+          <p>${esc(a.description)}</p>
+          <button class="plain small" onclick="showCourse(${a.course_id})">Back to course</button>
+          <h3>Submissions (${data.submissions.length})</h3>
+          ${cards || '<p class="hint">No submissions yet.</p>'}
+          <h3>Not submitted yet</h3>
+          <p class="hint">${missing}</p>`;
+      } catch (err) {
+        $('detail').innerHTML = '<p class="error">' + esc(err.message) + '</p>';
+      }
+    }
+
+    async function saveGrade(submissionId) {
+      const out = $('gm-' + submissionId);
+      out.className = 'error';
+      out.textContent = '';
+      try {
+        await api('/api/submissions/' + submissionId + '/grade', 'POST', {
+          marks: $('m-' + submissionId).value,
+          feedback: $('g-' + submissionId).value.trim()
+        });
+        out.className = 'paid';
+        out.textContent = 'Saved. The student has been notified.';
+      } catch (err) { out.textContent = err.message; }
+    }
+
+    // ---------- ASSIGNMENTS: STUDENT ----------
+    async function showAssignment(id) {
+      clearTimer();
+      $('detail').innerHTML = '<p class="hint">Loading...</p>';
+      try {
+        const data = await api('/api/assignments/' + id);
+        const a = data.assignment;
+        const s = data.submission;
+        currentCourseId = a.course_id;
+        const overdue = new Date(a.due_date) < new Date();
+        const graded = !!(s && s.graded_at);
+
+        let deadline;
+        if (graded || s) deadline = '';
+        else if (overdue) deadline = '<span class="error">The deadline has passed. You can still submit, but it will be marked late.</span>';
+        else deadline = `<span class="pending">${esc(timeLeftText(a.due_date))}</span>`;
+
+        let body;
+        if (graded) {
+          body = `
+            <div class="grade-box">
+              <b class="paid">Graded: ${esc(s.marks)} / ${esc(a.max_marks)}</b>
+              ${s.feedback ? `<p><b>Teacher's feedback:</b> ${esc(s.feedback)}</p>` : ''}
+              <p class="hint">Graded on ${esc(fmtDateTime(s.graded_at))}</p>
+            </div>
+            <h3>Your submission</h3>
+            <div class="answer">${esc(s.answer_text)}</div>`;
+        } else if (!data.can_submit) {
+          body = '<p class="hint">Start a free demo or enroll in this course to submit this assignment.</p>';
+        } else {
+          body = `
+            ${s ? `<p class="pending">Submitted on ${esc(fmtDateTime(s.submitted_at))}. You can change it until your teacher grades it.</p>` : ''}
+            <label>Your answer</label>
+            <textarea id="as-answer" placeholder="Write your answer here, or paste a link to your work (for example a Google Drive link).">${esc(s ? s.answer_text : '')}</textarea>
+            <p id="msg" class="error"></p>
+            <button class="primary" id="as-btn" onclick="submitAssignment(${a.assignment_id})">${s ? 'Update submission' : 'Submit assignment'}</button>`;
+        }
+
+        $('detail').innerHTML = `
+          <h2>${esc(a.title)}</h2>
+          <p class="meta">${esc(data.course_name)} · due ${esc(fmtDateTime(a.due_date))} · ${esc(a.max_marks)} marks</p>
+          <p>${deadline}</p>
+          <button class="plain small" onclick="showCourse(${a.course_id})">Back to course</button>
+          <h3>Instructions</h3>
+          <p>${esc(a.description || 'No instructions were added.')}</p>
+          ${body}`;
+      } catch (err) {
+        $('detail').innerHTML = '<p class="error">' + esc(err.message) + '</p>';
+      }
+    }
+
+    async function submitAssignment(id) {
+      const btn = $('as-btn');
+      btn.disabled = true;
+      try {
+        const result = await api('/api/assignments/' + id + '/submit', 'POST', { answer_text: $('as-answer').value });
+        refreshNotifications();
+        await showAssignment(id);
+        setMsg(result.message, true);
+      } catch (err) {
+        btn.disabled = false;
+        setMsg(err.message);
+      }
+    }
+
+    // ---------- TESTS: TEACHER ----------
+    function showAddTest(courseId) {
+      $('detail').innerHTML = `
+        <h2>Add a test</h2>
+        <label>Test name</label><input id="t-name">
+        <label>Duration (minutes)</label><input id="t-duration" type="number" min="1" max="300">
+        <label>Date (optional)</label><input id="t-date" type="date">
+        <p id="msg" class="error"></p>
+        <button class="primary" onclick="addTest(${courseId})">Create test</button>
+        <button class="plain" onclick="showCourse(${courseId})">Cancel</button>`;
+    }
+
+    async function addTest(courseId) {
+      try {
+        const test = await api('/api/tests', 'POST', {
+          course_id: courseId,
+          test_name: $('t-name').value.trim(),
+          duration: $('t-duration').value,
+          test_date: $('t-date').value
+        });
+        await showManage(test.test_id);
+      } catch (err) { setMsg(err.message); }
+    }
+
+    async function showManage(testId) {
+      clearTimer();
+      $('detail').innerHTML = '<p class="hint">Loading...</p>';
+      try {
+        const data = await api('/api/tests/' + testId + '/manage');
+        const t = data.test;
+        const letters = ['a', 'b', 'c', 'd'];
+
+        const questions = data.questions.map(function (q, i) {
+          const options = letters.map(function (l) {
+            const right = q.correct_option === l;
+            return `<div class="${right ? 'paid' : ''}">${l.toUpperCase()}. ${esc(q['option_' + l])}${right ? ' ✓' : ''}</div>`;
+          }).join('');
+          return `
+            <div class="q">
+              <p><b>${i + 1}. ${esc(q.question_text)}</b> <span class="hint">(${esc(q.marks)} marks)</span>
+              <button class="danger small" onclick="deleteQuestion(${q.question_id}, ${testId})">Delete</button></p>
+              ${options}
+            </div>`;
+        }).join('');
+
+        const results = data.results.map(function (r) {
+          const score = r.score == null ? '<span class="pending">In progress</span>' : esc(r.score) + ' / ' + esc(t.total_marks);
+          return `<tr><td>${esc(r.students ? r.students.name : '')}</td><td>${score}</td></tr>`;
+        }).join('');
+
+        $('detail').innerHTML = `
+          <h2>${esc(t.test_name)}</h2>
+          <p class="meta">${esc(t.duration)} minutes · ${esc(data.questions.length)} questions · ${esc(t.total_marks)} total marks</p>
+          <button class="plain small" onclick="showCourse(currentCourseId)">Back to course</button>
+          <h3>Questions</h3>
+          ${questions || '<p class="hint">No questions yet. Add the first one below.</p>'}
+          <h3>Add a question</h3>
+          <label>Question</label><input id="n-text" style="max-width:640px">
+          <label>Option A</label><input id="n-a">
+          <label>Option B</label><input id="n-b">
+          <label>Option C</label><input id="n-c">
+          <label>Option D</label><input id="n-d">
+          <label>Correct option</label>
+          <select id="n-correct"><option value="a">A</option><option value="b">B</option><option value="c">C</option><option value="d">D</option></select>
+          <label>Marks</label><input id="n-marks" type="number" min="1" value="1">
+          <p id="msg" class="error"></p>
+          <button class="primary" onclick="addQuestion(${testId})">Add question</button>
+          <h3>Results</h3>
+          <table>
+            <tr><th>Student</th><th>Score</th></tr>
+            ${results || '<tr><td colspan="2" class="hint">Nobody has taken this test yet.</td></tr>'}
+          </table>`;
+      } catch (err) {
+        $('detail').innerHTML = '<p class="error">' + esc(err.message) + '</p>';
+      }
+    }
+
+    async function addQuestion(testId) {
+      try {
+        await api('/api/tests/' + testId + '/questions', 'POST', {
+          question_text: $('n-text').value.trim(),
+          option_a: $('n-a').value.trim(),
+          option_b: $('n-b').value.trim(),
+          option_c: $('n-c').value.trim(),
+          option_d: $('n-d').value.trim(),
+          correct_option: $('n-correct').value,
+          marks: $('n-marks').value
+        });
+        await showManage(testId);
+      } catch (err) { setMsg(err.message); }
+    }
+
+    async function deleteQuestion(questionId, testId) {
+      if (!confirm('Delete this question?')) return;
+      try {
+        await api('/api/questions/' + questionId, 'DELETE');
+        await showManage(testId);
+      } catch (err) { setMsg(err.message); }
+    }
+
+    // ---------- TESTS: STUDENT ----------
+    async function startTest(testId, duration, resume) {
+      if (!resume && !confirm('Start this test now? You will have ' + duration + ' minutes, the timer starts immediately, and you can take it only once.')) return;
+      try {
+        const data = await api('/api/tests/' + testId + '/start', 'POST');
+        currentTestId = testId;
+        renderTest(data);
+      } catch (err) { setMsg(err.message); }
+    }
+
+    function renderTest(data) {
+      clearTimer();
+      let left = data.seconds_left;
+      const letters = ['a', 'b', 'c', 'd'];
+      const questions = data.questions.map(function (q, i) {
+        const options = letters.map(function (l) {
+          return `<label class="opt"><input type="radio" name="q-${q.question_id}" value="${l}">${l.toUpperCase()}. ${esc(q['option_' + l])}</label>`;
+        }).join('');
+        return `
+          <div class="q">
+            <p><b>${i + 1}. ${esc(q.question_text)}</b> <span class="hint">(${esc(q.marks)} marks)</span></p>
+            ${options}
+          </div>`;
+      }).join('');
+
+      $('detail').innerHTML = `
+        <h2>${esc(data.test.test_name)}</h2>
+        <p class="meta">${esc(data.questions.length)} questions · ${esc(data.test.total_marks)} marks</p>
+        <p id="timer" class="pending"></p>
+        ${questions}
+        <p id="msg" class="error"></p>
+        <button class="primary" id="submit-btn" onclick="submitTest(false)">Submit test</button>`;
+
+      const show = function () { $('timer').textContent = 'Time left: ' + fmtTime(left); };
+      show();
+      timerHandle = setInterval(function () {
+        if (!$('timer')) { clearTimer(); return; }
+        left -= 1;
+        if (left <= 0) {
+          clearTimer();
+          $('timer').textContent = 'Time is up. Submitting...';
+          submitTest(true);
+          return;
+        }
+        show();
+      }, 1000);
+    }
+
+    async function submitTest(auto) {
+      clearTimer();
+      const btn = $('submit-btn');
+      if (btn) btn.disabled = true;
+      const answers = {};
+      document.querySelectorAll('input[type=radio]:checked').forEach(function (r) {
+        answers[r.name.replace('q-', '')] = r.value;
+      });
+      try {
+        const result = await api('/api/tests/' + currentTestId + '/submit', 'POST', { answers: answers });
+        me = await api('/api/me');
+        showTestResult(result);
+      } catch (err) {
+        if (btn) btn.disabled = false;
+        setMsg(err.message);
+      }
+    }
+
+    function showTestResult(r) {
+      const rows = r.review.map(function (x, i) {
+        return `<tr><td>${i + 1}. ${esc(x.question_text)}</td><td>${esc(x.your)}</td><td>${esc(x.correct)}</td><td class="${x.is_correct ? 'paid' : 'error'}">${x.is_correct ? 'Correct' : 'Wrong'}</td></tr>`;
+      }).join('');
+      $('detail').innerHTML = `
+        <h2>${r.late ? '<span class="error">Time was up</span>' : '<span class="paid">Test submitted</span>'}</h2>
+        <p>Your score: <b>${esc(r.score)} / ${esc(r.total)}</b></p>
+        ${r.late ? '<p class="error">Your answers arrived after the time limit, so the score is 0.</p>' : ''}
+        <table>
+          <tr><th>Question</th><th>Your answer</th><th>Correct answer</th><th></th></tr>
+          ${rows}
+        </table>
+        <button class="primary" onclick="loadDashboard()">Go to my dashboard</button>
+        <button class="plain" onclick="loadCourses()">Back to courses</button>`;
+    }
+
+    // ---------- FREE DEMO ----------
+    async function startDemo(id, from) {
+      if (!confirm('Start your free 30-day demo of this course? You get one free demo per account.')) return;
+      try {
+        await api('/api/demo', 'POST', { course_id: id });
+        me = await api('/api/me');
+        if (from === 'demo') await loadDemo(); else await showCourse(id);
+      } catch (err) {
+        if (from === 'demo') alert(err.message); else setMsg(err.message);
+      }
+    }
+
+    async function loadDemo() {
+      if (!me || me.role !== 'student') return showAuth('login', 'student');
+      setTab('demo');
+      $('toolbar').innerHTML = '';
+      if (!courseList.length) {
+        try { courseList = await api('/api/courses'); } catch (err) { /* nothing to show */ }
+      }
+      const demoRow = me.access.find(function (a) { return a.access_type === 'demo'; });
+
+      if (!me.demoUsed) {
+        $('detail').innerHTML = `
+          <h2>Try a course free for 30 days</h2>
+          <p>Every student account gets <b>one free 30-day demo</b>. Pick any course below to start. You can pay later to keep full access, or enroll directly without using your demo.</p>`;
+        $('list').innerHTML = courseList.filter(function (c) { return !accessFor(c.course_id); }).map(function (c) {
+          return `
+            <div class="card" style="cursor:default">
+              <h3>${esc(c.course_name)}</h3>
+              <p class="meta">${esc(c.category)} · ${esc(c.duration)} weeks · ₹${esc(c.fee)}</p>
+              <p>${esc(c.description)}</p>
+              <button class="plain" onclick="startDemo(${c.course_id}, 'demo')">Start free demo</button>
+              <button class="plain" onclick="showPayment(${c.course_id})">Pay &amp; enroll</button>
+            </div>`;
+        }).join('') || '<p class="hint">You already have access to every course.</p>';
+      } else if (demoRow) {
+        const course = courseList.find(function (c) { return c.course_id === demoRow.course_id; });
+        const name = course ? course.course_name : 'your course';
+        $('detail').innerHTML = demoRow.active
+          ? `<h2>Your free demo</h2><p class="pending">${daysLeft(demoRow.expires_at)} days left (until ${esc(fmtDate(demoRow.expires_at))}).</p><p>Enroll fully any time to keep access after the demo ends.</p>`
+          : `<h2>Your free demo has ended</h2><p class="error">It ended on ${esc(fmtDate(demoRow.expires_at))}.</p><p>Enroll to continue learning this course.</p>`;
+        $('list').innerHTML = `
+          <div class="card" style="cursor:default">
+            <h3>${esc(name)}</h3>
+            <button class="primary" onclick="showPayment(${demoRow.course_id})">Pay &amp; enroll fully</button>
+          </div>`;
+      } else {
+        $('detail').innerHTML = '<h2>Free demo used</h2><p>You have used your free demo and enrolled in that course. Browse the Courses tab to enroll in more.</p>';
+        $('list').innerHTML = '';
+      }
+    }
+
+    // ---------- FAKE PAYMENT PORTAL ----------
+    function showPayment(id) {
+      const course = courseList.find(function (c) { return c.course_id === id; });
+      if (!course) return;
+      setTab('courses');
+      $('toolbar').innerHTML = '';
+      $('detail').innerHTML = `
+        <h2>Checkout</h2>
+        <p class="pending">Demo payment portal: no real money is charged. Never type real card or bank details on this site.</p>
+        <table>
+          <tr><th>Course</th><td>${esc(course.course_name)}</td></tr>
+          <tr><th>Duration</th><td>${esc(course.duration)} weeks</td></tr>
+          <tr><th>Amount to pay</th><td><b>₹${esc(course.fee)}</b></td></tr>
+        </table>
+        <label>Payment method</label>
+        <select id="p-method"><option>UPI</option><option>Card</option><option>Net Banking</option></select>
+        <p><label style="font-weight:400"><input type="checkbox" id="p-fail">Test mode: make this payment fail</label></p>
+        <p id="msg" class="error"></p>
+        <button class="primary" id="pay-btn" onclick="payNow(${id})">Pay ₹${esc(course.fee)}</button>
+        <button class="plain" onclick="loadCourses()">Cancel</button>`;
+    }
+
+    async function payNow(id) {
+      const btn = $('pay-btn');
+      const label = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Processing...';
+      setMsg('');
+      try {
+        await new Promise(function (resolve) { setTimeout(resolve, 1500); });
+        const result = await api('/api/pay', 'POST', {
+          course_id: id,
+          method: $('p-method').value,
+          simulate: $('p-fail').checked ? 'fail' : ''
+        });
+        me = await api('/api/me');
+        showReceipt(result, id);
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = label;
+        setMsg(err.message);
+      }
+    }
+
+    function showReceipt(result, id) {
+      const p = result.payment;
+      if (result.status === 'Paid') {
+        $('detail').innerHTML = `
+          <h2 class="paid">Payment successful</h2>
+          <p>You are now enrolled in <b>${esc(result.course_name)}</b>.</p>
+          <table>
+            <tr><th>Receipt no.</th><td>#${esc(p.payment_id)}</td></tr>
+            <tr><th>Amount</th><td>₹${esc(p.amount)}</td></tr>
+            <tr><th>Method</th><td>${esc(p.payment_method)}</td></tr>
+            <tr><th>Date</th><td>${esc(p.payment_date)}</td></tr>
+          </table>
+          <button class="primary" onclick="loadDashboard()">Go to my dashboard</button>
+          <button class="plain" onclick="loadCourses()">Back to courses</button>`;
+      } else {
+        $('detail').innerHTML = `
+          <h2 class="error">Payment failed</h2>
+          <p>Your payment of ₹${esc(p.amount)} did not go through. This was a test, so nothing was charged and you are not enrolled.</p>
+          <button class="primary" onclick="showPayment(${id})">Try again</button>
+          <button class="plain" onclick="loadCourses()">Back to courses</button>`;
+      }
+    }
+
+    // ---------- STUDENTS (teachers) AND MY DASHBOARD (students) ----------
     async function loadStudents() {
       setTab('students');
       $('toolbar').innerHTML = '';
-      if (!me) {
-        $('list').innerHTML = '';
-        showLogin('login', 'Please log in to see student information.');
-        return;
-      }
       $('detail').innerHTML = '<p class="hint">Click a student to see their courses, scores and payments.</p>';
       try {
         const students = await api('/api/students');
         $('list').innerHTML = students.map(function (s) {
           return `
             <div class="card" id="student-${s.student_id}" onclick="showStudent(${s.student_id})">
-              <h3>${esc(s.name)}${me.student.student_id === s.student_id ? ' (you)' : ''}</h3>
+              <h3>${esc(s.name)}</h3>
               <p class="meta">${esc(s.email)}</p>
               <p>${esc(s.address)}</p>
             </div>`;
@@ -294,6 +1125,13 @@
       } catch (err) {
         $('list').innerHTML = '<p class="error">' + esc(err.message) + '</p>';
       }
+    }
+
+    function loadDashboard() {
+      setTab('students');
+      $('toolbar').innerHTML = '';
+      $('list').innerHTML = '';
+      showStudent(me.profile.student_id);
     }
 
     async function showStudent(id) {
@@ -305,13 +1143,22 @@
         const info = [s.email, s.phone, s.address, s.dob ? 'Born ' + s.dob : ''].filter(Boolean).map(esc).join(' · ');
 
         const courseRows = data.courses.map(function (c) {
-          return `<tr><td>${esc(c.course.course_name)}</td><td>${esc(c.course.category)}</td></tr>`;
+          let access;
+          if (c.access_type === 'paid') {
+            access = '<span class="paid">Paid</span>';
+          } else if (new Date(c.expires_at) > new Date()) {
+            access = '<span class="pending">Demo until ' + esc(fmtDate(c.expires_at)) + '</span>';
+          } else {
+            access = '<span class="error">Demo ended</span>';
+          }
+          return `<tr><td>${esc(c.course.course_name)}</td><td>${esc(c.course.category)}</td><td>${access}</td></tr>`;
         }).join('');
         const scoreRows = data.attempts.map(function (a) {
-          return `<tr><td>${esc(a.test.test_name)}</td><td>${esc(a.score)} / ${esc(a.test.total_marks)}</td></tr>`;
+          const score = a.score == null ? '<span class="pending">In progress</span>' : esc(a.score) + ' / ' + esc(a.test.total_marks);
+          return `<tr><td>${esc(a.test.test_name)}</td><td>${score}</td></tr>`;
         }).join('');
         const paymentRows = data.payments.map(function (p) {
-          const cls = p.payment_status === 'Paid' ? 'paid' : 'pending';
+          const cls = p.payment_status === 'Paid' ? 'paid' : (p.payment_status === 'Failed' ? 'error' : 'pending');
           return `<tr><td>${esc(p.course.course_name)}</td><td>₹${esc(p.amount)}</td><td>${esc(p.payment_method)}</td><td>${esc(p.payment_date)}</td><td class="${cls}">${esc(p.payment_status)}</td></tr>`;
         }).join('');
 
@@ -320,8 +1167,8 @@
           <p class="meta">${info}</p>
           <h3>Enrolled courses</h3>
           <table>
-            <tr><th>Course</th><th>Category</th></tr>
-            ${courseRows || '<tr><td colspan="2" class="hint">Not enrolled yet.</td></tr>'}
+            <tr><th>Course</th><th>Category</th><th>Access</th></tr>
+            ${courseRows || '<tr><td colspan="3" class="hint">Not enrolled yet.</td></tr>'}
           </table>
           <h3>Test scores</h3>
           <table>
@@ -338,8 +1185,655 @@
       }
     }
 
+    // ---------- BOOKSTORE, CART AND ORDERS ----------
+    let isStaff = false;
+    let checkoutKey = null;   // one key per checkout page, so a double-click cannot create two orders
+    const BK_STEPS = ['Order Placed', 'Confirmed', 'Packed', 'Shipped', 'Out for Delivery', 'Delivered'];
+    const rupees = function (n) { return '₹' + Number(n).toFixed(2); };
+
+    function bkTab(name) {
+      setTab('none');
+      document.querySelectorAll('.bk-tab').forEach(function (b) { b.classList.toggle('active', b.id === 'tab-' + name); });
+      $('toolbar').innerHTML = '';
+    }
+
+    // Shows the bookstore tabs to students, and the order-management tab to bookstore staff
+    async function syncBookTabs() {
+      const student = !!me && me.role === 'student';
+      ['books', 'cart', 'orders'].forEach(function (n) { $('tab-' + n).style.display = student ? '' : 'none'; });
+      isStaff = false;
+      if (me && me.role === 'teacher') {
+        try { isStaff = (await api('/api/staff/check')).staff; } catch (err) { isStaff = false; }
+      }
+      $('tab-staff').style.display = isStaff ? '' : 'none';
+    }
+
+    async function loadBooks() {
+      if (!me || me.role !== 'student') return showAuth('login', 'student');
+      bkTab('books');
+      $('detail').innerHTML = '<h2>Bookstore</h2><p class="pending">Demo store: no real payment is taken and nothing is really delivered.</p><p id="msg" class="error"></p>';
+      $('list').innerHTML = '<p class="hint">Loading...</p>';
+      try {
+        const books = await api('/api/books');
+        $('list').innerHTML = books.map(function (b) {
+          const img = b.cover_url && /^https?:\/\//.test(b.cover_url)
+            ? `<img src="${esc(b.cover_url)}" alt="" style="max-width:100%; max-height:160px">` : '';
+          const stock = b.stock > 0
+            ? (b.stock <= 5 ? 'Only ' + esc(b.stock) + ' left' : 'In stock')
+            : '<span class="error">Out of stock</span>';
+          return `
+            <div class="card" style="cursor:default">
+              ${img}
+              <h3>${esc(b.title)}</h3>
+              <p class="meta">${esc(b.author)}</p>
+              <p>${esc(b.description)}</p>
+              <p><b>${rupees(b.price)}</b> · ${stock}</p>
+              <button class="primary small" ${b.stock > 0 ? '' : 'disabled'} onclick="addToCart(${b.book_id}, this)">Add to cart</button>
+            </div>`;
+        }).join('') || '<p class="hint">No books are available yet.</p>';
+      } catch (err) {
+        $('list').innerHTML = '<p class="error">' + esc(err.message) + '</p>';
+      }
+    }
+
+    async function addToCart(bookId, btn) {
+      btn.disabled = true;
+      try {
+        await api('/api/cart', 'POST', { book_id: bookId, change: 1 });
+        setMsg('Added to your cart.', true);
+      } catch (err) { setMsg(err.message); }
+      btn.disabled = false;
+    }
+
+    async function loadCart() {
+      if (!me || me.role !== 'student') return showAuth('login', 'student');
+      bkTab('cart');
+      $('list').innerHTML = '';
+      $('detail').innerHTML = '<p class="hint">Loading...</p>';
+      try {
+        const cart = await api('/api/cart');
+        const rows = cart.items.map(function (i) {
+          return `<tr>
+            <td>${esc(i.title)}</td><td>${rupees(i.price)}</td>
+            <td><button class="plain small" onclick="changeQty(${i.book_id}, -1)">−</button> ${esc(i.quantity)} <button class="plain small" onclick="changeQty(${i.book_id}, 1)">+</button></td>
+            <td>${rupees(i.subtotal)}</td>
+            <td><button class="danger small" onclick="removeFromCart(${i.book_id})">Remove</button></td></tr>`;
+        }).join('');
+        $('detail').innerHTML = `<h2>Your cart</h2><p id="msg" class="error"></p>` + (cart.items.length ? `
+          <table>
+            <tr><th>Book</th><th>Price</th><th>Quantity</th><th>Subtotal</th><th></th></tr>
+            ${rows}
+            <tr><th colspan="3">Total</th><th colspan="2">${rupees(cart.total)}</th></tr>
+          </table>
+          <button class="plain" onclick="loadBooks()">Continue shopping</button>
+          <button class="primary" onclick="showCheckout()">Proceed to checkout</button>`
+          : '<p class="hint">Your cart is empty.</p><button class="primary" onclick="loadBooks()">Browse books</button>');
+      } catch (err) {
+        $('detail').innerHTML = '<p class="error">' + esc(err.message) + '</p>';
+      }
+    }
+
+    async function changeQty(bookId, change) {
+      try {
+        await api('/api/cart', 'POST', { book_id: bookId, change: change });
+        await loadCart();
+      } catch (err) { setMsg(err.message); }
+    }
+
+    async function removeFromCart(bookId) {
+      try {
+        await api('/api/cart/' + bookId, 'DELETE');
+        await loadCart();
+      } catch (err) { setMsg(err.message); }
+    }
+
+    async function showCheckout() {
+      bkTab('cart');
+      $('detail').innerHTML = '<p class="hint">Loading...</p>';
+      try {
+        const cart = await api('/api/cart');
+        if (!cart.items.length) return loadCart();
+        checkoutKey = crypto.randomUUID();
+        const rows = cart.items.map(function (i) {
+          return `<tr><td>${esc(i.title)}</td><td>${esc(i.quantity)} × ${rupees(i.price)}</td><td>${rupees(i.subtotal)}</td></tr>`;
+        }).join('');
+        const p = me.profile;
+        $('detail').innerHTML = `
+          <h2>Checkout</h2>
+          <p class="pending">Demo checkout: no real payment is taken and no real courier is involved. Do not enter card or bank details.</p>
+          <table><tr><th>Book</th><th>Quantity</th><th>Subtotal</th></tr>${rows}
+            <tr><th colspan="2">Total</th><th>${rupees(cart.total)}</th></tr></table>
+          <h3>Delivery details</h3>
+          <label>Full name</label><input id="ck-name" value="${esc(p.name)}">
+          <label>Delivery address</label><input id="ck-address" style="max-width:640px">
+          <label>City</label><input id="ck-city">
+          <label>State</label><input id="ck-state">
+          <label>PIN code</label><input id="ck-pin" inputmode="numeric" maxlength="6">
+          <label>Phone number</label><input id="ck-phone" inputmode="tel" value="${esc(p.phone || '')}" placeholder="10-digit mobile number">
+          <p id="msg" class="error"></p>
+          <button class="primary" id="ck-btn" onclick="placeOrder()">Place demo order (${rupees(cart.total)})</button>
+          <button class="plain" onclick="loadCart()">Back to cart</button>`;
+      } catch (err) {
+        $('detail').innerHTML = '<p class="error">' + esc(err.message) + '</p>';
+      }
+    }
+
+    async function placeOrder() {
+      const v = function (id) { return $(id).value.trim(); };
+      const phone = v('ck-phone').replace(/[\s-]/g, '').replace(/^(\+91|0)/, '');
+      if (v('ck-name').length < 2) return setMsg('Please enter your full name.');
+      if (v('ck-address').length < 5) return setMsg('Please enter your delivery address.');
+      if (v('ck-city').length < 2) return setMsg('Please enter your city.');
+      if (v('ck-state').length < 2) return setMsg('Please enter your state.');
+      if (!/^[1-9][0-9]{5}$/.test(v('ck-pin'))) return setMsg('PIN code must be 6 digits.');
+      if (!/^[6-9][0-9]{9}$/.test(phone)) return setMsg('Phone number must be a valid 10-digit Indian mobile number.');
+      const btn = $('ck-btn');
+      btn.disabled = true;
+      setMsg('');
+      try {
+        const order = await api('/api/orders', 'POST', {
+          key: checkoutKey, name: v('ck-name'), address: v('ck-address'), city: v('ck-city'),
+          state: v('ck-state'), pin: v('ck-pin'), phone: phone
+        });
+        checkoutKey = null;
+        $('detail').innerHTML = `
+          <h2 class="paid">Demo order placed</h2>
+          <p>Your order number is <b>${esc(order.order_no)}</b>. Total: <b>${rupees(order.total)}</b>.</p>
+          <p class="hint">This is a demo: no real payment was taken and nothing will really be shipped.</p>
+          <button class="primary" onclick="loadOrders()">View my orders</button>
+          <button class="plain" onclick="loadBooks()">Continue shopping</button>`;
+      } catch (err) {
+        btn.disabled = false;
+        setMsg(err.message);
+      }
+    }
+
+    // Order status as a row of steps (a cancelled order shows its own notice instead)
+    function timelineHtml(o) {
+      if (o.status === 'Cancelled') return '<p class="error"><b>Cancelled</b></p>';
+      const at = BK_STEPS.indexOf(o.status);
+      return '<div class="steps">' + BK_STEPS.map(function (s, i) {
+        return `<div class="step ${i <= at ? 'done' : ''}">${esc(s)}</div>`;
+      }).join('') + '</div>';
+    }
+
+    function orderItemsHtml(o) {
+      return '<table><tr><th>Book</th><th>Qty</th><th>Price</th></tr>' + o.order_items.map(function (i) {
+        return `<tr><td>${esc(i.title)}</td><td>${esc(i.quantity)}</td><td>${rupees(i.unit_price)}</td></tr>`;
+      }).join('') + '</table>';
+    }
+
+    async function loadOrders() {
+      if (!me || me.role !== 'student') return showAuth('login', 'student');
+      bkTab('orders');
+      $('list').innerHTML = '';
+      $('detail').innerHTML = '<p class="hint">Loading...</p>';
+      try {
+        const orders = await api('/api/orders');
+        $('detail').innerHTML = '<h2>My book orders</h2><p class="hint">Demo orders. Status updates are entered by staff; no real courier is connected.</p><p id="msg" class="error"></p>' +
+          (orders.map(function (o) {
+            const events = o.order_events.slice().sort(function (a, b) { return new Date(a.created_at) - new Date(b.created_at); })
+              .map(function (e) { return `<div class="hint">${esc(fmtDateTime(e.created_at))} · ${esc(e.status)}${e.note ? ': ' + esc(e.note) : ''}</div>`; }).join('');
+            const cancel = (o.status === 'Order Placed' || o.status === 'Confirmed')
+              ? `<button class="danger small" onclick="cancelOrder(${o.order_id})">Cancel order</button>` : '';
+            return `
+              <div class="q">
+                <h3>${esc(o.order_no)} <span class="hint">· ${esc(fmtDate(o.created_at))}</span></h3>
+                ${timelineHtml(o)}
+                ${orderItemsHtml(o)}
+                <p><b>Total: ${rupees(o.total)}</b> · ${esc(o.payment_note)}</p>
+                <p class="meta">Deliver to: ${esc(o.ship_name)}, ${esc(o.ship_address)}, ${esc(o.ship_city)}, ${esc(o.ship_state)} ${esc(o.ship_pin)} · ${esc(o.ship_phone)}</p>
+                <p class="meta">Tracking reference: ${o.tracking_ref ? esc(o.tracking_ref) : 'not added yet'} · Estimated delivery: ${o.estimated_delivery ? esc(o.estimated_delivery) : 'not set'}</p>
+                ${events}
+                ${cancel}
+              </div>`;
+          }).join('') || '<p class="hint">You have not ordered any books yet.</p><button class="primary" onclick="loadBooks()">Browse books</button>');
+      } catch (err) {
+        $('detail').innerHTML = '<p class="error">' + esc(err.message) + '</p>';
+      }
+    }
+
+    async function cancelOrder(id) {
+      if (!confirm('Cancel this order?')) return;
+      try {
+        await api('/api/orders/' + id + '/cancel', 'POST');
+        await loadOrders();
+      } catch (err) { setMsg(err.message); }
+    }
+
+    // Bookstore staff: update the status, tracking reference and estimated delivery of orders
+    async function loadStaffOrders() {
+      if (!me || me.role !== 'teacher' || !isStaff) return;
+      bkTab('staff');
+      $('list').innerHTML = '';
+      $('detail').innerHTML = '<p class="hint">Loading...</p>';
+      try {
+        const orders = await api('/api/staff/orders');
+        $('detail').innerHTML = '<h2>Book orders (staff)</h2><p id="msg" class="error"></p>' + (orders.map(function (o) {
+          const closed = o.status === 'Cancelled' || o.status === 'Delivered';
+          const options = BK_STEPS.map(function (s) { return `<option ${s === o.status ? 'selected' : ''}>${esc(s)}</option>`; }).join('');
+          const form = closed ? `<p class="hint">This order is ${esc(o.status.toLowerCase())}.</p>` : `
+            <label>Status</label><select id="st-${o.order_id}">${options}</select>
+            <label>Tracking reference</label><input id="tr-${o.order_id}" maxlength="60" value="${esc(o.tracking_ref || '')}">
+            <label>Estimated delivery</label><input id="eta-${o.order_id}" type="date" value="${esc(o.estimated_delivery || '')}">
+            <label>Note (optional)</label><input id="nt-${o.order_id}" maxlength="300">
+            <br><button class="primary small" style="margin-top:12px" onclick="saveStaffOrder(${o.order_id})">Save</button>`;
+          return `
+            <div class="q">
+              <h3>${esc(o.order_no)} <span class="hint">· ${esc(fmtDateTime(o.created_at))} · ${esc(o.status)}</span></h3>
+              ${orderItemsHtml(o)}
+              <p class="meta">${esc(o.ship_name)}, ${esc(o.ship_address)}, ${esc(o.ship_city)}, ${esc(o.ship_state)} ${esc(o.ship_pin)} · ${esc(o.ship_phone)}</p>
+              ${form}
+            </div>`;
+        }).join('') || '<p class="hint">No orders yet.</p>');
+      } catch (err) {
+        $('detail').innerHTML = '<p class="error">' + esc(err.message) + '</p>';
+      }
+    }
+
+    async function saveStaffOrder(id) {
+      try {
+        await api('/api/staff/orders/' + id, 'POST', {
+          status: $('st-' + id).value, tracking_ref: $('tr-' + id).value.trim(),
+          estimated_delivery: $('eta-' + id).value, note: $('nt-' + id).value.trim()
+        });
+        await loadStaffOrders();
+        setMsg('Order updated.', true);
+      } catch (err) { setMsg(err.message); }
+    }
+
+    // ---------- COURSE PROGRESS AND TRACKING ----------
+    let lectureDone = [];   // ids of lectures the logged-in student has completed (for the course page)
+
+    function syncProgressTabs() {
+      $('tab-progress').style.display = me && me.role === 'student' ? '' : 'none';
+      $('tab-tracking').style.display = me && me.role === 'teacher' ? '' : 'none';
+    }
+
+    function lectureAction(l) {
+      if (!me) return '';
+      if (me.role === 'teacher') return `<button class="plain small" onclick="showLecture(${l.lecture_id})">Open / edit links</button>`;
+      const a = accessFor(currentCourseId);
+      if (!(a && a.active)) return '<span class="hint">Start a demo or enroll</span>';
+      const status = lectureDone.indexOf(l.lecture_id) >= 0
+        ? `<span class="paid">Completed</span> <button class="plain small" onclick="toggleLecture(${l.lecture_id}, false)">Undo</button>`
+        : `<span class="pending">Pending</span> <button class="primary small" onclick="toggleLecture(${l.lecture_id}, true)">Mark as completed</button>`;
+      return `<button class="primary small" onclick="showLecture(${l.lecture_id})">Watch</button> ${status}`;
+    }
+
+    async function toggleLecture(id, done) {
+      try {
+        await api('/api/lectures/' + id + '/complete', 'POST', { done: done });
+        await showCourse(currentCourseId);
+        setMsg(done ? 'Lecture marked as completed.' : 'Lecture marked as not completed.', true);
+      } catch (err) { setMsg(err.message); }
+    }
+
+    function bar(pct) {
+      const w = Math.max(0, Math.min(100, Number(pct) || 0));
+      return `<div style="background:#eef1f6; border-radius:8px; height:14px; max-width:420px"><div style="width:${w}%; background:#3b4cca; height:14px; border-radius:8px"></div></div>`;
+    }
+
+    function statusSpan(s) {
+      const cls = s === 'Completed' ? 'paid' : (s === 'Behind' ? 'error' : 'pending');
+      return `<span class="${cls}">${esc(s)}</span>`;
+    }
+
+    function courseProgressHtml(p, teacherView) {
+      const L = p.lectures, A = p.assignments, T = p.tests;
+      const todo = [];
+      L.items.filter(function (x) { return !x.done; }).forEach(function (x) {
+        todo.push(`<li>Lecture: ${esc(x.title)} <span class="hint">(not completed)</span></li>`);
+      });
+      A.items.filter(function (x) { return x.status === 'pending' || x.status === 'overdue'; }).forEach(function (x) {
+        const when = x.status === 'overdue'
+          ? `<span class="error">overdue since ${esc(fmtDateTime(x.due_date))}</span>`
+          : `<span class="pending">due ${esc(fmtDateTime(x.due_date))}</span>`;
+        todo.push(`<li>Assignment: ${esc(x.title)} · ${when}${teacherView ? '' : ` <button class="primary small" onclick="showAssignment(${x.assignment_id})">Open</button>`}</li>`);
+      });
+      T.items.filter(function (x) { return !x.done; }).forEach(function (x) {
+        todo.push(`<li>Test: ${esc(x.name)}${teacherView ? '' : ` <button class="plain small" onclick="showCourse(${p.course_id})">Go to course</button>`}</li>`);
+      });
+      const scores = T.items.filter(function (x) { return x.done; }).map(function (x) {
+        return `${esc(x.name)}: <b>${esc(x.score)} / ${esc(x.total_marks)}</b>`;
+      }).join(' · ');
+      return `
+        <div class="q">
+          <h3>${esc(p.course_name)} <span class="hint">· ${esc(p.access)}</span> · ${statusSpan(p.status)}</h3>
+          <p><b>${esc(p.overall_pct)}% complete</b></p>
+          ${bar(p.overall_pct)}
+          <table style="margin-top:10px">
+            <tr><th></th><th>Total</th><th>Completed</th><th>Remaining</th><th>Progress</th></tr>
+            <tr><td>Lectures</td><td>${L.total}</td><td>${L.done}</td><td>${L.remaining}</td><td>${L.pct}%</td></tr>
+            <tr><td>Assignments</td><td>${A.total}</td><td>${A.done}</td><td>${A.pending} pending · <span class="${A.overdue ? 'error' : ''}">${A.overdue} overdue</span></td><td>${A.pct}%</td></tr>
+            <tr><td>Tests</td><td>${T.total}</td><td>${T.done}</td><td>${T.pending}</td><td>${T.pct}%</td></tr>
+          </table>
+          ${scores ? `<p class="meta">Test results: ${scores}</p>` : ''}
+          <h4 style="margin:12px 0 4px">Pending tasks</h4>
+          ${todo.length ? '<ul>' + todo.join('') + '</ul>' : '<p class="hint">Nothing pending.</p>'}
+          ${teacherView ? '' : `<button class="plain small" onclick="showCourse(${p.course_id})">Open course</button>${p.status === 'Completed' ? ` <button class="primary small" onclick="showCertificate(${p.course_id})">View certificate</button>` : ''}`}
+        </div>`;
+    }
+
+    async function loadProgress() {
+      if (!me || me.role !== 'student') return showAuth('login', 'student');
+      bkTab('progress');
+      $('list').innerHTML = '';
+      $('detail').innerHTML = '<p class="hint">Loading...</p>';
+      try {
+        const courses = await api('/api/progress/me');
+        $('detail').innerHTML = '<h2>My course progress</h2><p class="hint">Each lecture, assignment and test counts as one step. A lecture counts when you mark it completed, an assignment when you submit it, and a test when you finish it.</p>' +
+          (courses.map(function (p) { return courseProgressHtml(p, false); }).join('') ||
+           '<p class="hint">You are not enrolled in any course yet.</p><button class="primary" onclick="loadCourses()">Browse courses</button>');
+      } catch (err) {
+        $('detail').innerHTML = '<p class="error">' + esc(err.message) + '</p>';
+      }
+    }
+
+    // Teachers: progress of everyone enrolled in a course
+    async function loadTracking() {
+      if (!me || me.role !== 'teacher') return;
+      bkTab('tracking');
+      $('list').innerHTML = '';
+      if (!courseList.length) {
+        try { courseList = await api('/api/courses'); } catch (err) { /* the list stays empty */ }
+      }
+      const options = courseList.map(function (c) { return `<option value="${c.course_id}">${esc(c.course_name)}</option>`; }).join('');
+      $('detail').innerHTML = `
+        <h2>Student tracking</h2>
+        <label>Course</label><select id="tk-course">${options}</select>
+        <label>Search by name or email</label><input id="tk-q">
+        <label>Progress status</label>
+        <select id="tk-status"><option value="">All</option><option>Not started</option><option>In progress</option><option>Behind</option><option>Completed</option><option>No activities</option></select>
+        <br><button class="primary" onclick="runTracking()">Show students</button>
+        <div id="tk-out" style="margin-top:14px"></div>`;
+      if (courseList.length) runTracking();
+    }
+
+    async function runTracking() {
+      const out = $('tk-out');
+      out.innerHTML = '<p class="hint">Loading...</p>';
+      try {
+        const url = '/api/progress/course/' + encodeURIComponent($('tk-course').value) +
+          '?q=' + encodeURIComponent($('tk-q').value.trim()) + '&status=' + encodeURIComponent($('tk-status').value);
+        const data = await api(url);
+        const s = data.summary;
+        const rows = data.rows.map(function (r) {
+          const p = r.progress;
+          return `<tr>
+            <td>${esc(r.student.name)}<br><span class="hint">${esc(r.student.email)}</span></td>
+            <td style="min-width:140px">${esc(p.overall_pct)}%${bar(p.overall_pct)}</td>
+            <td>${p.lectures.done}/${p.lectures.total}</td>
+            <td>${p.assignments.done} done · ${p.assignments.pending} pending · ${p.assignments.overdue} overdue</td>
+            <td>${p.tests.done}/${p.tests.total}</td>
+            <td>${statusSpan(p.status)}</td>
+            <td><button class="plain small" onclick="showStudentProgress(${r.student.student_id})">Details</button></td></tr>`;
+        }).join('');
+        out.innerHTML = `
+          <p><b>${s.students}</b> students · average completion <b>${s.avg_pct}%</b> · <b>${s.with_pending}</b> with pending work · <b>${s.not_started}</b> not started · <b>${s.behind}</b> behind</p>
+          <div style="overflow-x:auto"><table>
+            <tr><th>Student</th><th>Completion</th><th>Lectures</th><th>Assignments</th><th>Tests</th><th>Status</th><th></th></tr>
+            ${rows || '<tr><td colspan="7" class="hint">No students match.</td></tr>'}
+          </table></div>`;
+      } catch (err) {
+        out.innerHTML = '<p class="error">' + esc(err.message) + '</p>';
+      }
+    }
+
+    async function showStudentProgress(id) {
+      $('detail').innerHTML = '<p class="hint">Loading...</p>';
+      try {
+        const data = await api('/api/progress/student/' + id);
+        $('detail').innerHTML = `
+          <h2>${esc(data.student.name)}</h2>
+          <p class="meta">${esc(data.student.email)}</p>
+          <button class="plain small" onclick="loadTracking()">Back to tracking</button>
+          ${data.courses.map(function (p) { return courseProgressHtml(p, true); }).join('') || '<p class="hint">Not enrolled in any course.</p>'}`;
+      } catch (err) {
+        $('detail').innerHTML = '<p class="error">' + esc(err.message) + '</p>';
+      }
+    }
+
+    // ---------- ABOUT PAGE ----------
+    // Optional: put a real contact email here (for example 'support@yourschool.com') and it will be shown on the About page.
+    const ABOUT_CONTACT_EMAIL = '';
+
+    function showAbout() {
+      bkTab('about');
+      $('list').innerHTML = '';
+      const feature = function (icon, title, text) {
+        return `<div class="about-card"><div class="about-icon">${icon}</div><h3>${title}</h3><p>${text}</p></div>`;
+      };
+      const step = function (n, title, text) {
+        return `<div class="about-step"><span class="about-num">${n}</span><div><b>${title}</b><p>${text}</p></div></div>`;
+      };
+      const faq = function (q, a) { return `<details class="about-faq"><summary>${q}</summary><p>${a}</p></details>`; };
+      const cta = me
+        ? '<button class="primary" onclick="loadCourses()">Browse courses</button>'
+        : '<button class="primary" onclick="showAuth(\'signup\', \'student\')">Create a student account</button> <button class="plain" onclick="showAuth(\'login\')">Log in</button>';
+      const contact = ABOUT_CONTACT_EMAIL
+        ? `<p>Questions or feedback? Write to <a href="mailto:${esc(ABOUT_CONTACT_EMAIL)}">${esc(ABOUT_CONTACT_EMAIL)}</a>.</p>`
+        : '<p>Questions or feedback? Please contact your teacher or the administrator of this platform.</p>';
+
+      $('detail').innerHTML = `
+        <div class="about-hero">
+          <h2>About the E-Learning Platform</h2>
+          <p>A simple place to learn online. Join courses, watch your progress grow, take tests, hand in assignments, and order your course books, all in one account.</p>
+          <div>${cta}</div>
+        </div>
+
+        <h3>What you can do here</h3>
+        <div class="about-grid">
+          ${feature('📚', 'Courses and lectures', 'Browse courses by category and see every lecture, assignment and test before you start.')}
+          ${feature('🎁', 'Free 30-day demo', 'Every student account can try one course free for 30 days. Enroll later to keep full access.')}
+          ${feature('📝', 'Assignments and tests', 'Submit assignments before the deadline, take timed tests, and get marks and feedback from your teacher.')}
+          ${feature('📈', 'Progress tracking', 'See your completion percentage for every course, what is still pending, and what is overdue.')}
+          ${feature('🔔', 'Notifications', 'Get alerts for new assignments, grades and deadlines that are coming up.')}
+          ${feature('🛒', 'Student bookstore', 'Order books for your studies, track the order status step by step, and keep your order history.')}
+        </div>
+
+        <h3>How it works</h3>
+        ${step(1, 'Create your account', 'Sign up as a student (or as a teacher with the teacher code).')}
+        ${step(2, 'Start learning', 'Begin your free demo or enroll in a course, then work through its lectures, assignments and tests.')}
+        ${step(3, 'Track your progress', 'Mark lectures as completed and watch your progress bar fill up on the My progress page.')}
+        ${step(4, 'Get your books', 'Add course books to your cart, check out, and follow your order in My orders.')}
+
+        <h3>For teachers</h3>
+        <p>Teachers can add courses, create tests and assignments, grade submissions, follow every student's progress in the Tracking tab, and update book order status and tracking details.</p>
+
+        <h3>Good to know</h3>
+        <p class="pending">This is a demo project. Course payments and book orders are simulated: no real money is charged and no real courier is involved. Please never enter real card or bank details.</p>
+
+        <h3>Frequently asked questions</h3>
+        ${faq('How does the free demo work?', 'Each student account gets one free 30-day demo of one course. You can pay to enroll fully at any time to keep access after the demo ends.')}
+        ${faq('How is my course progress calculated?', 'Every lecture, assignment and test is one step. A lecture counts when you mark it completed, an assignment when you submit it, and a test when you finish it. Your percentage is completed steps divided by total steps.')}
+        ${faq('Can I change an assignment after submitting it?', 'Yes, until your teacher grades it. Submitting after the deadline is allowed but is marked as late.')}
+        ${faq('Can I cancel a book order?', 'Yes, while the order is still Order Placed or Confirmed. After it is packed, it can no longer be cancelled.')}
+        ${faq('I forgot my password. What do I do?', 'Choose Log in, then Forgot your password, and we will email you a link to set a new one.')}
+
+        <h3>Contact</h3>
+        ${contact}
+        <div style="margin-top:14px">${cta}</div>`;
+    }
+
+    // ---------- LECTURE VIDEOS AND LIVE CLASSES ----------
+    // Turns a YouTube, Vimeo or Google Drive link into an embeddable address. Anything else gets a plain link.
+    function embedUrl(url) {
+      try {
+        const u = new URL(url);
+        const host = u.hostname.replace(/^www\./, '');
+        let id = null;
+        if (host === 'youtu.be') id = u.pathname.slice(1);
+        else if (host === 'youtube.com' || host === 'm.youtube.com') {
+          id = u.searchParams.get('v') || (u.pathname.match(/^\/(?:live|embed|shorts)\/([^/?]+)/) || [])[1];
+        }
+        if (id && /^[A-Za-z0-9_-]{6,20}$/.test(id)) return 'https://www.youtube-nocookie.com/embed/' + id;
+        if (host === 'vimeo.com') {
+          const v = u.pathname.match(/^\/(\d+)/);
+          if (v) return 'https://player.vimeo.com/video/' + v[1];
+        }
+        if (host === 'drive.google.com') {
+          const d = u.pathname.match(/^\/file\/d\/([A-Za-z0-9_-]+)/);
+          if (d) return 'https://drive.google.com/file/d/' + d[1] + '/preview';
+        }
+      } catch (err) { /* not a valid link */ }
+      return null;
+    }
+
+    async function showAddLecture(courseId) {
+      let types = ['Recorded', 'Live'];
+      try { const t = await api('/api/lecture-types'); if (t.length) types = t; } catch (err) { /* use the defaults */ }
+      const typeOptions = types.map(function (t) { return `<option>${esc(t)}</option>`; }).join('');
+      $('detail').innerHTML = `
+        <h2>Add a lecture</h2>
+        <label>Title</label><input id="lv-title">
+        <label>Type</label><select id="lv-type">${typeOptions}</select>
+        <label>Date</label><input id="lv-date" type="date">
+        <label>Recorded video link (YouTube, Vimeo or Google Drive)</label><input id="lv-video" style="max-width:640px" placeholder="https://...">
+        <label>Live class link (Zoom, Google Meet or YouTube Live)</label><input id="lv-live" style="max-width:640px" placeholder="https://...">
+        <label>Live class date and time (optional)</label><input id="lv-start" type="datetime-local">
+        <p class="hint">Add a video link, a live class link, or both. Only students with an active demo or enrollment can see these links.</p>
+        <p id="msg" class="error"></p>
+        <button class="primary" onclick="addLecture(${courseId})">Save lecture</button>
+        <button class="plain" onclick="showCourse(${courseId})">Cancel</button>`;
+    }
+
+    async function addLecture(courseId) {
+      const start = $('lv-start').value;
+      try {
+        await api('/api/courses/' + courseId + '/lectures', 'POST', {
+          title: $('lv-title').value.trim(), type: $('lv-type').value, date: $('lv-date').value,
+          video_url: $('lv-video').value.trim(), live_url: $('lv-live').value.trim(),
+          live_start: start ? new Date(start).toISOString() : ''
+        });
+        await showCourse(courseId);
+        setMsg('Lecture added.', true);
+      } catch (err) { setMsg(err.message); }
+    }
+
+    async function showLecture(id) {
+      clearTimer();
+      $('detail').innerHTML = '<p class="hint">Loading...</p>';
+      try {
+        const data = await api('/api/lectures/' + id + '/watch');
+        const l = data.lecture, m = data.media;
+        const isTeacher = me.role === 'teacher';
+        currentCourseId = l.course_id;
+        let player = '<p class="hint">No video or live class link has been added for this lecture yet.</p>';
+        if (m && m.video_url && /^https:\/\//.test(m.video_url)) {
+          const e = embedUrl(m.video_url);
+          player = e
+            ? `<iframe src="${esc(e)}" title="${esc(l.lecture_title)}" style="width:100%; max-width:800px; aspect-ratio:16/9; border:0; border-radius:8px; background:#000" allow="fullscreen; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"></iframe>`
+            : `<p><a href="${esc(m.video_url)}" target="_blank" rel="noopener noreferrer">Open the recorded lecture in a new tab</a></p>`;
+        }
+        const live = m && m.live_url && /^https:\/\//.test(m.live_url)
+          ? `<div class="grade-box"><b>Live class</b>${m.live_start ? ' · ' + esc(fmtDateTime(m.live_start)) : ''}<br>
+              <a href="${esc(m.live_url)}" target="_blank" rel="noopener noreferrer"><button class="primary small" style="margin-top:8px">Join live class</button></a></div>` : '';
+        const done = !isTeacher
+          ? (data.completed
+              ? `<p><span class="paid">Completed</span> <button class="plain small" onclick="markFromWatch(${id}, false)">Undo</button></p>`
+              : `<button class="primary" onclick="markFromWatch(${id}, true)">Mark as completed</button>`)
+          : '';
+        const edit = isTeacher ? `
+          <h3>Edit links</h3>
+          <label>Recorded video link</label><input id="lm-video" style="max-width:640px" value="${esc(m && m.video_url || '')}">
+          <label>Live class link</label><input id="lm-live" style="max-width:640px" value="${esc(m && m.live_url || '')}">
+          <label>Live class date and time (optional)</label><input id="lm-start" type="datetime-local">
+          <p class="hint">After a live class ends, paste the recording link here so students can watch it later.</p>
+          <p id="msg" class="error"></p>
+          <button class="primary" onclick="saveLectureLinks(${id})">Save links</button>` : '<p id="msg" class="error"></p>';
+        $('detail').innerHTML = `
+          <h2>${esc(l.lecture_title)}</h2>
+          <p class="meta">${esc(l.lecture_type)} · ${esc(l.lecture_date)}</p>
+          <button class="plain small" onclick="showCourse(${l.course_id})">Back to course</button>
+          ${live}${player}${done}${edit}`;
+      } catch (err) {
+        $('detail').innerHTML = '<p class="error">' + esc(err.message) + '</p><button class="plain small" onclick="loadCourses()">Back to courses</button>';
+      }
+    }
+
+    async function markFromWatch(id, done) {
+      try {
+        await api('/api/lectures/' + id + '/complete', 'POST', { done: done });
+        await showLecture(id);
+      } catch (err) { setMsg(err.message); }
+    }
+
+    async function saveLectureLinks(id) {
+      const start = $('lm-start').value;
+      try {
+        await api('/api/lectures/' + id + '/media', 'PUT', {
+          video_url: $('lm-video').value.trim(), live_url: $('lm-live').value.trim(),
+          live_start: start ? new Date(start).toISOString() : ''
+        });
+        await showLecture(id);
+        setMsg('Lecture links saved.', true);
+      } catch (err) { setMsg(err.message); }
+    }
+
+    // ---------- ANNOUNCEMENTS (teachers) AND CERTIFICATE (students) ----------
+    function showAnnounce(courseId) {
+      $('detail').innerHTML = `
+        <h2>Send an announcement</h2>
+        <p class="hint">Every student with an active demo or enrollment in this course gets it in their notification bell.</p>
+        <label>Message (up to 500 characters)</label>
+        <textarea id="an-text" maxlength="500"></textarea>
+        <p id="msg" class="error"></p>
+        <button class="primary" id="an-btn" onclick="sendAnnouncement(${courseId})">Send to students</button>
+        <button class="plain" onclick="showCourse(${courseId})">Cancel</button>`;
+    }
+
+    async function sendAnnouncement(courseId) {
+      const btn = $('an-btn');
+      btn.disabled = true;
+      try {
+        const r = await api('/api/courses/' + courseId + '/announce', 'POST', { message: $('an-text').value.trim() });
+        await showCourse(courseId);
+        setMsg('Announcement sent to ' + r.sent + (r.sent === 1 ? ' student.' : ' students.'), true);
+      } catch (err) {
+        btn.disabled = false;
+        setMsg(err.message);
+      }
+    }
+
+    async function showCertificate(courseId) {
+      $('detail').innerHTML = '<p class="hint">Loading...</p>';
+      try {
+        const c = await api('/api/certificate/' + courseId);
+        $('detail').innerHTML = `
+          <div class="certificate">
+            <p class="cert-small">E-Learning Platform</p>
+            <h1>Certificate of Completion</h1>
+            <p>This certifies that</p>
+            <h2 class="cert-name">${esc(c.student_name)}</h2>
+            <p>has completed all the lectures, assignments and tests of the course</p>
+            <h2>${esc(c.course_name)}</h2>
+            <p class="cert-small">Issued on ${esc(fmtDate(c.issued_on))}</p>
+          </div>
+          <button class="primary no-print" onclick="window.print()">Print or save as PDF</button>
+          <button class="plain no-print" onclick="loadProgress()">Back to my progress</button>`;
+      } catch (err) {
+        $('detail').innerHTML = '<p class="error">' + esc(err.message) + '</p><button class="plain small" onclick="loadProgress()">Back to my progress</button>';
+      }
+    }
+
     // ---------- START ----------
     async function start() {
+      // Did the user arrive from a "reset password" email? The link carries the details after the # in the address.
+      const hash = new URLSearchParams(location.hash.replace(/^#/, ''));
+      if (hash.get('type') === 'recovery' && hash.get('access_token')) {
+        recoveryToken = hash.get('access_token');
+        history.replaceState(null, '', location.pathname);
+        clearLogin();
+        showReset();
+        return;
+      }
+      if (hash.get('error_description')) {
+        history.replaceState(null, '', location.pathname);
+        clearLogin();
+        showReset('That reset link has expired or was already used. Please request a new one.');
+        return;
+      }
       if (token) {
         try { me = await api('/api/me'); } catch (err) { clearLogin(); }
       }
